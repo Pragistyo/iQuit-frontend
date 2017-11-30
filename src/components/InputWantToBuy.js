@@ -25,31 +25,38 @@ class InputWantToBuy extends Component {
     render () {
         return (
             <View style={styles.container}>
-                <Text>Item: </Text>
-                <TextInput
-                    name="itemInput"
-                    style={{ height: 40, borderColor: 'gray', borderWidth: 1}}
-                    onChangeText={(e) => this.setState({textItem:e}) }
-                />
-                <Text>Price: </Text>
-                <TextInput
-                    name="priceInput"
-                    style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-                    onChangeText={(e) => this.setState({textPrice:Number(e)})}
-                />
-                <Button
-                    color="#841584"
-                    title="Submit"
-                    onPress={() => { this.submitInputWannaBuy()} }
-                />
+                <View style={{ alignItems: 'center'}}>
+                    <Text>  Item: </Text>
+                    <TextInput
+                        name="itemInput"
+                        style={{ width:300,height: 40, borderColor: 'orange', borderWidth: 1}}
+                        onChangeText={(e) => this.setState({textItem:e}) }
+                    />
+                </View>
+                <View style={{ alignItems: 'center' }}>
+                    <Text>  Price: </Text>
+                    <TextInput
+                        name="priceInput"
+                        style={{ width: 300, height: 40, borderColor: 'orange', borderWidth: 1 }}
+                        onChangeText={(e) => this.setState({textPrice:Number(e)})}
+                    />
+                </View>
+                <View style={{ alignItems: 'center', paddingTop:20}}>
+                    <Button
+                        style={{ paddingLeft:50,alignItems: 'center', width: 20}}
+                        color="#841584"
+                        title="Submit"
+                        onPress={() => { this.submitInputWannaBuy()} }
+                    />
+                </View>
             </View>
         )
     }
 
-    onChange(e) {
-        console.log(e)
-        alert(JSON.stringify(e))
-    }
+    // onChange(e) {
+    //     console.log(e)
+    //     alert(JSON.stringify(e))
+    // }
 
     submitInputWannaBuy () {
         let objInput = {
@@ -62,11 +69,9 @@ class InputWantToBuy extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        // flex: 1,
-        paddingTop: 2,
+        flex: 1,
+        paddingTop: 50,
         backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
     },
 });
 
