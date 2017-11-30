@@ -30,7 +30,6 @@ class PersonalInfo extends Component {
     return (
       <Card
         title="Personal Info"
-
       >
         <View style={styles.cardContainer}>
           <View>
