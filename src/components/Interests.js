@@ -11,7 +11,7 @@ import {
   Button
  } from 'react-native-elements';
 
-import DropdownMenu from 'react-native-dropdown-menu';
+
 
 class Interests extends Component {
   constructor(props) {
@@ -23,17 +23,10 @@ class Interests extends Component {
 
     return(
       <Card>
-        <DropdownMenu
-        data={data}
-        handler={(selection, row) => alert(data[selection][row])} >
-          <View
-          style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}
-          >
-           <Text>
-             Your own view Here
-           </Text>
-          </View>
-        </DropdownMenu>
+        <Text>
+          Choose several category that pick your interest
+        </Text>
+
       </Card>
     )
   }

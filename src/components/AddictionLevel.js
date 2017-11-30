@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   View,
+  Text,
 } from 'react-native';
 import {
   Card,
@@ -20,8 +21,9 @@ class AddictionLevel extends Component {
       <Card>
         <FormInput/>
         <FormInput/>
-        <Button
-        title='BUTTON' />
+        <Text>
+          Price per 
+        </Text>
       </Card>
     )
   }

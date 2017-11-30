@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import {
   View
 } from 'react-native';
+import {
+  Button
+} from 'react-native-elements';
 
 import PersonalInfo from '../components/PersonalInfo';
 import AddictionLevel from '../components/AddictionLevel';
@@ -18,6 +21,8 @@ class Register extends Component {
         <PersonalInfo/>
         <AddictionLevel/>
         <Interests/>
+        <Button
+        title='Submit' />
       </View>
     )
   }
