@@ -5,6 +5,7 @@ import {
 
 import PersonalInfo from '../components/PersonalInfo';
 import AddictionLevel from '../components/AddictionLevel';
+import Interests from '../components/Interests';
 
 class Register extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class Register extends Component {
       <View>
         <PersonalInfo/>
         <AddictionLevel/>
+        <Interests/>
       </View>
     )
   }
