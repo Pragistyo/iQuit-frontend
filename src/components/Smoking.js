@@ -4,7 +4,8 @@ import {
 } from 'react-native-elements';
 import {
   TouchableOpacity,
-  Image
+  Image,
+  StyleSheet,
 } from 'react-native';
 
 class Smoking extends Component {
@@ -16,11 +17,18 @@ class Smoking extends Component {
     return (
       <Button
         title="Take one in case you couldn't make it"
-        icon={{name: 'warning'}}
         backgroundColor='#e3871fff'
+        containerViewStyle={styles.styling}
       />
     )
   }
 }
+
+const styles = StyleSheet.create({
+  styling: {
+    width: 140,
+    marginTop: 15,
+  }
+})
 
 export default Smoking

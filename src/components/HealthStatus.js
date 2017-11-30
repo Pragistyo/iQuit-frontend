@@ -16,38 +16,58 @@ class HealthStatus extends Component {
 
   render() {
     return (
-      <Card>
+      <Card
+        containerStyle={{ width: 210 }}
+      >
         <View style={styles.oneLiner}>
           <Icon
           name="favorite"
-          color="grey"
+          color="#a00037"
           />
+          <Text style={styles.strong}>
+            {'Age Reduction: '}
+          </Text>
           <Text>
-            Age Reduction
+            112 min
           </Text>
         </View>
 
         <View style={styles.oneLiner}>
           <Icon
-          name="smoking-rooms"/>
+          name="smoking-rooms"
+          color="#4e342e"
+          />
+          <Text style={styles.strong}>
+            {'Nicotine Amount: '}
+          </Text>
           <Text>
-            Nicotine Amount
+            15 kg
           </Text>
         </View>
 
         <View style={styles.oneLiner}>
           <Icon
-          name="bubble-chart"/>
+          name="bubble-chart"
+          color="#6a1b9a"
+          />
+          <Text style={styles.strong}>
+            {'Tar Amount: '}
+          </Text>
           <Text>
-            Tar Amount
+            10 kg
           </Text>
         </View>
 
         <View style={styles.oneLiner}>
           <Icon
-          name="airline-seat-individual-suite"/>
+          name="airline-seat-individual-suite"
+          color="#ef6c00"
+          />
+          <Text style={styles.strong}>
+            {'Cancer Chance: '}
+          </Text>
           <Text>
-            Cancer Chance
+            Yes
           </Text>
         </View>
 
@@ -59,6 +79,10 @@ class HealthStatus extends Component {
 const styles = StyleSheet.create({
   oneLiner: {
     flexDirection: 'row',
+  },
+
+  strong: {
+    fontWeight: 'bold',
   }
 })
 

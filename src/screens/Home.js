@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import {
   View,
-  Text
+  ScrollView,
+  Text,
+  StyleSheet,
 } from 'react-native';
 
 import Smoking from '../components/Smoking';
@@ -18,16 +20,26 @@ class Home extends Component {
 
   render() {
     return (
-      <View>
-        <ShowLogo/>
-        <HealthStatus/>
-        <MoneySaved/>
-        <Smoking/>
-        <WantToBuy/>
-        <TopRecommendations/>
-      </View>
+      <ScrollView>
+        <ShowLogo style={{ height: 100 }}/>
+        <View style={ styles.upperComponentGrouping }>
+          <HealthStatus style={{ height: 100 }}/>
+          <Smoking style={{ height: 100 }}/>
+        </View>
+        <MoneySaved style={{ height: 100 }}/>
+        <WantToBuy style={{ height: 100 }}/>
+        <TopRecommendations style={{ height: 100 }}/>
+      </ScrollView>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  upperComponentGrouping: {
+    flexDirection: 'row',
+    marginBottom: 10,
+    justifyContent: 'space-around',
+  },
+})
 
 export default Home;
