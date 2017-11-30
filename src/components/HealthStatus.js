@@ -29,7 +29,7 @@ class HealthStatus extends Component {
 
         <View style={styles.oneLiner}>
           <Icon
-          name="asterisk"/>
+          name="smoking-rooms"/>
           <Text>
             Nicotine Amount
           </Text>
