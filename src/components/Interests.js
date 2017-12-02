@@ -115,7 +115,6 @@ class Interests extends Component {
             )
           })}
         </Picker> */}
-
       </Card>
     )
   }
