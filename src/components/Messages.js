@@ -11,6 +11,7 @@ import {
 import axios from 'axios';
 import fireapp from '@firebase/app';
 import '@firebase/firestore';
+import '@firebase/database';
 // import '@firebase/app/dist/esm/src/firebaseApp';
 // import firestore from '@firebase/firestore';
 // import * as firebase from 'firebase';
@@ -34,29 +35,53 @@ class Messages extends Component {
     this.state = {
       messages: [],
     }
+
+    this.setState({
+      messages: ['asas']
+    })
+    this.onCollectionUpdate = this.onCollectionUpdate.bind(this);
   }
 
-  componentDidMount() {
-    this.setState({
-      messages: 'lll',
-    })
+  // onCollectionUpdate(querySnapshot) {
+  //   jkj
+  //   alert('in')
+  //   const messages = [];
+  //   querySnapshot.forEach((doc) => {
+  //       messages.push(doc.data().message)
+  //   });
+  //   this.setState({
+  //     messages
+  //   })
+  // }
 
-    db.collection('messages').get().then((data) => {
-      alskjdpojw
-      this.setState({
-        messages: 'then',
-      })
-      alert('then')
-    })
-    .catch((err) => {
-      al;skjdl
-      this.setState({
-        messages: 'catch',
-      })
-      alert('catch')
-    })
-    console.log(db.collection('messages').get());
-    // alert('aasoy')
+  componentDidMount() {
+    // db.collection('messages').get()
+    // .then(this.onCollectionUpdate, () => {alert('asd')})
+    // .catch((err) => {
+    //   alert('yuhuu')
+    // });
+    // alert(db.collection('messages').get().then);
+
+    // this.setState({
+    //   messages: 'lll',
+    // })
+    //
+    // db.collection('messages').get().then((data) => {
+    //   alskjdpojw
+    //   this.setState({
+    //     messages: 'then',
+    //   })
+    //   alert('then')
+    // })
+    // .catch((err) => {
+    //   al;skjdl
+    //   this.setState({
+    //     messages: 'catch',
+    //   })
+    //   alert('catch')
+    // })
+    // console.log(db.collection('messages').get());
+    // // alert('aasoy')
   }
 
   // ‎componentDidMount() {
@@ -82,19 +107,7 @@ class Messages extends Component {
       data={[
         {key: 'id1', userName: 'aku anak gembala', m:'Gua udah dari tahun 90 an ngerokok, sekarang udah setop'},
         {key: 'id2', userName: 'b-for-bastard', m:'Wah gimana tuh caranya bro?'},
-        {key: 'id2', userName: 'b-for-bastard', m:'Wah gimana tuh caranya bro?'},
-        {key: 'id2', userName: 'b-for-bastard', m:'Wah gimana tuh caranya bro?'},
-        {key: 'id2', userName: 'b-for-bastard', m:'Wah gimana tuh caranya bro?'},
-        {key: 'id2', userName: 'b-for-bastard', m:'Wah gimana tuh caranya bro?'},
-        {key: 'id2', userName: 'b-for-bastard', m:'Wah gimana tuh caranya bro?'},
-        {key: 'id2', userName: 'b-for-bastard', m:'Wah gimana tuh caranya bro?'},
-        {key: 'id2', userName: 'b-for-bastard', m:'Wah gimana tuh caranya bro?'},
-        {key: 'id2', userName: 'b-for-bastard', m:'Wah gimana tuh caranya bro?'},
-        {key: 'id2', userName: 'b-for-bastard', m:'Wah gimana tuh caranya bro?'},
-        {key: 'id2', userName: 'b-for-bastard', m:'Wah gimana tuh caranya bro?'},
-        {key: 'id2', userName: 'b-for-bastard', m:'Wah gimana tuh caranya bro?'},
-        {key: 'id2', userName: 'b-for-bastard', m:'Wah gimana tuh caranya bro?'},
-        {key: 'id2', userName: 'b-for-bastard', m:'Wah gimana tuh caranya bro?'},
+
       ]}
       renderItem={({ item }) => (
         <View style={styles.margins}>
