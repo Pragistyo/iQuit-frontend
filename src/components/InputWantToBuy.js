@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import {
     Card,
-    // FormLabel,
+    FormLabel,
     // FormInput,
     // // Button
 } from 'react-native-elements';
@@ -26,7 +26,7 @@ class InputWantToBuy extends Component {
         return (
             <View style={styles.container}>
                 <View style={{ alignItems: 'center'}}>
-                    <Text>  Item: </Text>
+                    <FormLabel>  Item: </FormLabel>
                     <TextInput
                         name="itemInput"
                         style={{ width:300,height: 40, borderColor: 'orange', borderWidth: 1}}
@@ -34,7 +34,7 @@ class InputWantToBuy extends Component {
                     />
                 </View>
                 <View style={{ alignItems: 'center' }}>
-                    <Text>  Price: </Text>
+                    <FormLabel>  Price: </FormLabel>
                     <TextInput
                         name="priceInput"
                         style={{ width: 300, height: 40, borderColor: 'orange', borderWidth: 1 }}
