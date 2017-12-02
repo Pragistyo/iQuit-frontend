@@ -63,7 +63,11 @@ class InputWantToBuy extends Component {
             item: this.state.textItem,
             price: this.state.textPrice
         }
-        alert(JSON.stringify(objInput))
+        if (!objInput.price){
+            alert('Please input "PRICE" with number')
+        }else{
+            alert(JSON.stringify(objInput))
+        }
     }
 }
 
