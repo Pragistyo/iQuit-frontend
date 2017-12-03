@@ -19,8 +19,11 @@ import {
   Button,
   Divider,
  } from 'react-native-elements';
- import FontAwesome from 'react-native-vector-icons/FontAwesome';
- import Kohana from './TextInput/Kohana';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { connect } from 'react-redux';
+
+import registerActions from '../redux/actions/register';
+import Kohana from './TextInput/Kohana';
 
 class AddictionLevel extends Component {
   constructor(props) {
@@ -68,7 +71,7 @@ class AddictionLevel extends Component {
          labelStyle={{ color: 'white' }}
          inputStyle={{ color: 'white' }}
          useNativeDriver
-         onChangeText={this.setStateFromForm('cigaretePerDay')}
+         onChangeText={(text) => { this.props.setPricePerPack(parseInt(text)) }}
         />
         <Kohana
          style={{ backgroundColor: '#e3871fff', width: 140, marginBottom: 5 }}
@@ -79,7 +82,7 @@ class AddictionLevel extends Component {
          labelStyle={{ color: 'white' }}
          inputStyle={{ color: 'white' }}
          useNativeDriver
-         onChangeText={this.setStateFromForm('pricePerPack')}
+         onChangeText={ (text) => { this.props.setCigarPerDay(parseInt(text)) } }
         />
       </View>
     )
@@ -139,4 +142,23 @@ const styles = StyleSheet.create({
   }
 })
 
-export default AddictionLevel;
+// export default AddictionLevel;
+function mapStateToProps(state, props) {
+  return {
+    pricePerPack: state.register.pricePerPack,
+    cigarPerDay: state.register.cigarPerDay,
+  };
+}
+
+function mapDispatchToProps(dispatch, props) {
+  return {
+    setPricePerPack: (pricePerPack) => {
+      dispatch(registerActions.setPricePerPack(pricePerPack));
+    },
+    setCigarPerDay: (cigarPerDay) => {
+      dispatch(registerActions.setCigarPerDay(cigarPerDay));
+    }
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddictionLevel)
