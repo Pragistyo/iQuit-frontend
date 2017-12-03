@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import {
-  View
+  View,
+  FlatList,
+  ScrollView
 } from 'react-native';
 import {
   Button
@@ -17,13 +19,15 @@ class Register extends Component {
 
   render() {
     return (
-      <View>
-        <PersonalInfo/>
-        <AddictionLevel/>
-        <Interests/>
-        <Button
-        title='Submit' />
-      </View>
+      // <View>
+      <ScrollView>
+          <PersonalInfo/>
+          <AddictionLevel/>
+          <Interests/>
+          <Button
+          title='Submit' />
+      </ScrollView>
+      // </View>
     )
   }
 }
