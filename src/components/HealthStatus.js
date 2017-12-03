@@ -8,10 +8,14 @@ import {
   Card,
   Icon,
 } from 'react-native-elements';
+import { connect } from 'react-redux';
+
+import healthStatsAction from '../redux/actions/healthStatus';
 
 class HealthStatus extends Component {
   constructor(props) {
-    super(props)
+    super(props);
+    this.props.fetchData(12);
   }
 
   render() {
@@ -28,7 +32,7 @@ class HealthStatus extends Component {
             {'Age Reduction: '}
           </Text>
           <Text>
-            112 min
+            {this.props.ageReduction} min
           </Text>
         </View>
 
@@ -41,7 +45,7 @@ class HealthStatus extends Component {
             {'Nicotine Amount: '}
           </Text>
           <Text>
-            15 kg
+            {this.props.nicotineAmount} kg
           </Text>
         </View>
 
@@ -54,7 +58,7 @@ class HealthStatus extends Component {
             {'Tar Amount: '}
           </Text>
           <Text>
-            10 kg
+            {this.props.tarAmount} kg
           </Text>
         </View>
 
@@ -67,7 +71,7 @@ class HealthStatus extends Component {
             {'Cancer Chance: '}
           </Text>
           <Text>
-            Yes
+            {this.props.increasedCancerChance.toString()}
           </Text>
         </View>
 
@@ -86,4 +90,30 @@ const styles = StyleSheet.create({
   }
 })
 
-export default HealthStatus;
+const mapStateToProps = (state, props) => {
+  return {
+    ageReduction: state.healthStatus.ageReduction,
+    nicotineAmount: state.healthStatus.nicotineAmount,
+    tarAmount: state.healthStatus.tarAmount,
+    increasedCancerChance: state.healthStatus.increasedCancerChance,
+    allState: state,
+  }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    fetchData: () => {
+      dispatch(healthStatsAction.fetchData(20));
+    },
+    setData: () => {
+      dispatch(healthStatsAction.setData({
+          ageReduction: 1,
+          nicotineAmount: 1,
+          tarAmount: 1,
+          increasedCancerChance: false,
+        }))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HealthStatus);
