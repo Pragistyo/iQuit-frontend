@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-
-// REACT-REDUX
-// import {connect} from 'react-redux';
-// import {} from '.../actions'
-
+import { connect } from 'react-redux';
 import {
   StyleSheet,
   View,
@@ -11,7 +7,8 @@ import {
   Picker,
   Modal,
   Button,
-  TouchableHighlight
+  TouchableHighlight,
+  ScrollView,
 } from 'react-native';
 import {
   Card,
@@ -21,17 +18,107 @@ import {
   CheckBox
  } from 'react-native-elements';
 
-
+import registerActions from '../redux/actions/register';
 
 class Interests extends Component {
   constructor(props) {
     super(props)
     this.state = {
       category :[
-        {name:"Personal",status:false},
-        {name:"Family",status:false},
-        {name:"Hobby",status:false},
-        {name:"Charity",status:false}
+        { id: '1334134',
+          status: false,
+          name: 'Arts, Crafts & Sewing' },
+        { id: '91083',
+          status: false,
+          name: 'Auto & Tires' },
+        { id: '5427',
+          status: false,
+          name: 'Baby' },
+        { id: '1085666',
+          status: false,
+          name: 'Beauty' },
+        { id: '3920',
+          status: false,
+          name: 'Books' },
+        { id: '1105910',
+          status: false,
+          name: 'Cell Phones' },
+        { id: '5438',
+          status: false,
+          name: 'Clothing' },
+        { id: '3944',
+          status: false,
+          name: 'Electronics' },
+        { id: '976759',
+          status: false,
+          name: 'Food' },
+        { id: '1094765',
+          status: false,
+          name: 'Gifts & Registry' },
+        { id: '976760',
+          status: false,
+          name: 'Health' },
+        { id: '4044',
+          status: false,
+          name: 'Home' },
+        { id: '1072864',
+          status: false,
+          name: 'Home Improvement' },
+        { id: '1115193',
+          status: false,
+          name: 'Household Essentials' },
+        { id: '6197502',
+          status: false,
+          name: 'Industrial & Scientific' },
+        { id: '3891',
+          status: false,
+          name: 'Jewelry' },
+        { id: '4096',
+          status: false,
+          name: 'Movies & TV' },
+        { id: '4104',
+          status: false,
+          name: 'Music on CD or Vinyl' },
+        { id: '7796869',
+          status: false,
+          name: 'Musical Instruments' },
+        { id: '1229749',
+          status: false,
+          name: 'Office' },
+        { id: '2637',
+          status: false,
+          name: 'Party & Occasions' },
+        { id: '5428',
+          status: false,
+          name: 'Patio & Garden' },
+        { id: '1005862',
+          status: false,
+          name: 'Personal Care' },
+        { id: '5440',
+          status: false,
+          name: 'Pets' },
+        { id: '5426',
+          status: false,
+          name: 'Photo Center' },
+        { id: '1085632',
+          status: false,
+          name: 'Seasonal' },
+        { id: '6163033',
+          status: false,
+          name: 'Services' },
+        { id: '4125',
+          status: false,
+          name: 'Sports & Outdoors' },
+        { id: '4171',
+          status: false,
+          name: 'Toys' },
+        { id: '2636',
+          status: false,
+          name: 'Video Games' },
+        // {name:"Arts, Crafts & Sewing",status:false},
+        // {name:"Family",status:false},
+        // {name:"Hobby",status:false},
+        // {name:"Charity",status:false}
       ],
       modalVisible: false,
       checked:false
@@ -76,25 +163,31 @@ class Interests extends Component {
         <Modal animationType={"slide"} transparent={false}
           visible={this.state.modalVisible}
           onRequestClose={() => { console.log("Modal has been closed.") }}>
-          <View>
+          <View style={{ flex: 1 }}>
             <View style={{ alignItems: 'center' }}>
-              <Text >SELECT YOUR INTEREST : </Text>
+              <Text >SELECT YOUR INTEREST :</Text>
             </View>
-            {this.state.category.map((dataItem, index) => {
-              return (
-                <CheckBox
-                  center
-                  key={index}
-                  onPress={this.CheckBox.bind(this, index)}
-                  title={dataItem.name}
-                  checked={dataItem.status}
-                  value={dataItem.name} />
-              )
-            })}
+            <ScrollView>
+              {this.state.category.map((dataItem, index) => {
+                return (
+                  <CheckBox
+                    center
+                    key={index}
+                    onPress={this.CheckBox.bind(this, index)}
+                    title={dataItem.name}
+                    checked={dataItem.status}
+                    value={dataItem.name} />
+                )
+              })}
+            </ScrollView>
             <TouchableHighlight
               style={{ alignItems: 'center' }}
             onPress={() => {
-              this.toggleModal(!this.state.modalVisible)
+              this.toggleModal(!this.state.modalVisible);
+              // alert(JSON.stringify(this.state.category))
+              this.props.setInterests(this.state.category.filter((cat) => {
+                if(cat.status) return cat
+              }))
             }}>
               <Text>
               SUBMIT
@@ -143,8 +236,6 @@ class Interests extends Component {
 
 // export default connectedComponent
 
-export default Interests;
-
 {/* <Modal animationType={"slide"} transparent={false}
   visible={this.state.modalVisible}
   onRequestClose={() => { console.log("Modal has been closed.") }}>
@@ -172,3 +263,19 @@ export default Interests;
   <TouchableHighlight onPress={() => { this.toggleModal(true) }}>
     <Text>Open Modal</Text>
   </TouchableHighlight > */}
+
+function mapStateToProps(state, props) {
+  return {
+    interests: state.register.interests,
+  }
+}
+
+function mapDispatchToProps(dispatch, props) {
+  return {
+    setInterests: (interests) => {
+      dispatch(registerActions.setInterests(interests))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Interests);
