@@ -9,25 +9,8 @@ import {
   Divider,
 } from 'react-native-elements';
 import axios from 'axios';
-import fireapp from '@firebase/app';
-import '@firebase/firestore';
-import '@firebase/database';
-// import '@firebase/app/dist/esm/src/firebaseApp';
-// import firestore from '@firebase/firestore';
-// import * as firebase from 'firebase';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBCs2gd1l2vlZR0KBnUNVZ6SZRGam-J7S8",
-  authDomain: "i-quit-e703a.firebaseapp.com",
-  databaseURL: "https://i-quit-e703a.firebaseio.com",
-  projectId: "i-quit-e703a",
-  storageBucket: "i-quit-e703a.appspot.com",
-  messagingSenderId: "1018168285781"
-};
-fireapp.initializeApp(firebaseConfig);
-const db = fireapp.firestore();
-// const firebaseApp = firebase.initializeApp(firebaseConfig);
-// firebaseApp.initializeApp(firebaseConfig);
+import db from '../helpers/fire-database';
 
 class Messages extends Component {
   constructor(props) {
@@ -36,89 +19,39 @@ class Messages extends Component {
       messages: [],
     }
 
-    this.setState({
-      messages: ['asas']
-    })
-    this.onCollectionUpdate = this.onCollectionUpdate.bind(this);
+    this.firebaseMessagesEventListener = this.firebaseMessagesEventListener.bind(this);
   }
 
-  // onCollectionUpdate(querySnapshot) {
-  //   jkj
-  //   alert('in')
-  //   const messages = [];
-  //   querySnapshot.forEach((doc) => {
-  //       messages.push(doc.data().message)
-  //   });
-  //   this.setState({
-  //     messages
-  //   })
-  // }
+  firebaseMessagesEventListener() {
+    db.ref('messages/').on('value', (snapshot) => {
+      const messages = [];
+      for (var index in snapshot.val()) {
+        if (snapshot.val().hasOwnProperty(index)) {
+          // messages.push(snapshot.val()[index])
+          messages.push(Object.assign({}, snapshot.val()[index], { key: index }));
+        }
+      }
+      this.setState({
+        messages
+      })
+    })
+  }
 
   componentDidMount() {
-    // db.collection('messages').get()
-    // .then(this.onCollectionUpdate, () => {alert('asd')})
-    // .catch((err) => {
-    //   alert('yuhuu')
-    // });
-    // alert(db.collection('messages').get().then);
-
-    // this.setState({
-    //   messages: 'lll',
-    // })
-    //
-    // db.collection('messages').get().then((data) => {
-    //   alskjdpojw
-    //   this.setState({
-    //     messages: 'then',
-    //   })
-    //   alert('then')
-    // })
-    // .catch((err) => {
-    //   al;skjdl
-    //   this.setState({
-    //     messages: 'catch',
-    //   })
-    //   alert('catch')
-    // })
-    // console.log(db.collection('messages').get());
-    // // alert('aasoy')
+    this.firebaseMessagesEventListener();
   }
-
-  // ‎componentDidMount() {
-  //   // db.collection('messages').get().then((querySnapshot) => {
-  //   //   this.setState({
-  //   //     messages: 'asd',
-  //   //   })
-  //   // })
-  //   // .catch((err) => {
-  //   //   this.setState({
-  //   //     messages: 'asd'
-  //   //   })
-  //   // });
-  //   //
-  //   // this.setState({
-  //   //   messages: 'tes'
-  //   // })
-  // }
 
   render() {
     return (
       <FlatList
-      data={[
-        {key: 'id1', userName: 'aku anak gembala', m:'Gua udah dari tahun 90 an ngerokok, sekarang udah setop'},
-        {key: 'id2', userName: 'b-for-bastard', m:'Wah gimana tuh caranya bro?'},
-
-      ]}
+      data={this.state.messages}
       renderItem={({ item }) => (
         <View style={styles.margins}>
           <Text style={styles.userName}>
-            {`${item.userName}`}
+            {`${item.username}`}
           </Text>
           <Text style={styles.content}>
-            {`${item.m}`}
-          </Text>
-          <Text>
-            {JSON.stringify(this.state.messages)}
+            {`${item.message}`}
           </Text>
           <Divider/>
         </View>
