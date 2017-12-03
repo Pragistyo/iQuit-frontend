@@ -10,8 +10,11 @@ import {
   FormInput,
   Divider,
  } from 'react-native-elements';
- import FontAwesome from 'react-native-vector-icons/FontAwesome';
- import Kohana from './TextInput/Kohana';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { connect } from 'react-redux';
+
+import registerActions from '../redux/actions/register';
+import Kohana from './TextInput/Kohana';
 
 class PersonalInfo extends Component {
   constructor(props) {
@@ -42,7 +45,7 @@ class PersonalInfo extends Component {
           <Text
           style={styles.headerStyling}
           >
-            Personal Info
+            Personal Info {this.props.name}
           </Text>
         </View>
         <Divider style={{ backgroundColor: '#9E9E9E' }} />
@@ -58,7 +61,8 @@ class PersonalInfo extends Component {
          labelStyle={{ color: 'white' }}
          inputStyle={{ color: 'white' }}
          useNativeDriver
-         onChangeText={this.setStateFromForm('name')}
+         // onChangeText={this.setStateFromForm('name')}
+         onChangeText={(e) => { this.props.setName(e) }}
         />
         <Kohana
          style={{ backgroundColor: '#e3871fff', width: 130, marginBottom: 10 }}
@@ -105,4 +109,24 @@ const styles = StyleSheet.create({
   }
 })
 
-module.exports = PersonalInfo;
+// module.exports = PersonalInfo;
+
+const mapStateToProps = (state, props) => {
+  return {
+    name: state.register.name,
+    age: state.register.age,
+  }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    setName: (name) => {
+      dispatch(registerActions.setName(name));
+    },
+    setAge: (age) => {
+      dispatch(registerActions.setAge(age));
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PersonalInfo);
