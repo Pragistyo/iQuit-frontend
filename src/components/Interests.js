@@ -28,9 +28,9 @@ class Interests extends Component {
     super(props)
     this.state = {
       category :[
-        {name:"Personal",status:false}, 
-        {name:"Family",status:false}, 
-        {name:"Hobby",status:false}, 
+        {name:"Personal",status:false},
+        {name:"Family",status:false},
+        {name:"Hobby",status:false},
         {name:"Charity",status:false}
       ],
       modalVisible: false,
@@ -42,7 +42,7 @@ class Interests extends Component {
   }
 
   CheckBox(index){
-    item = Object.assign({}, this.state.category[index], { status: !this.state.category[index].status });    
+    item = Object.assign({}, this.state.category[index], { status: !this.state.category[index].status });
     this.state.category[index] = item
     this.setState({
       category: this.state.category
@@ -54,16 +54,18 @@ class Interests extends Component {
     // var langeuageData = ["Personal", "Family", "Hobby", "Charity"]
 
     return(
-      <Card>
+      <View
+      style={{ padding: 4 }}
+      >
         {/* <Text>
           Choose several category that pick your interest
         </Text> */}
         {/* <View>
           {this.state.category.map((dataItem, index) => {
             return (
-              <CheckBox 
+              <CheckBox
               center
-              key={index} 
+              key={index}
               onPress={this.CheckBox.bind(this, index)}
               title={dataItem.name}
               checked={dataItem.status}
@@ -89,7 +91,7 @@ class Interests extends Component {
                   value={dataItem.name} />
               )
             })}
-            <TouchableHighlight 
+            <TouchableHighlight
               style={{ alignItems: 'center' }}
             onPress={() => {
               this.toggleModal(!this.state.modalVisible)
@@ -102,10 +104,11 @@ class Interests extends Component {
           </View>
         </Modal >
 
-        <Button 
+        <Button
+          color="#e3871fff"
           title='Choose several category that pick your interest'
         onPress={() => { this.toggleModal(true) }}/>
-        
+
         {/* <Picker
           selectedValue={this.state.language}
           onValueChange={(itemValue, itemIndex) => this.setState({ language: itemValue })}>
@@ -115,7 +118,7 @@ class Interests extends Component {
             )
           })}
         </Picker> */}
-      </Card>
+      </View>
     )
   }
 }

@@ -16,7 +16,7 @@ class Smoking extends Component {
   render() {
     return (
       <Button
-        title="Take one in case you couldn't make it"
+        title="Press when you smoke."
         backgroundColor='#e3871fff'
         containerViewStyle={styles.styling}
       />
@@ -26,7 +26,7 @@ class Smoking extends Component {
 
 const styles = StyleSheet.create({
   styling: {
-    width: 140,
+    width: 100,
     marginTop: 15,
   }
 })

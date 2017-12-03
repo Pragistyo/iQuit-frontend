@@ -16,38 +16,98 @@ import {
   Card,
   FormLabel,
   FormInput,
-  Button
+  Button,
+  Divider,
  } from 'react-native-elements';
+ import FontAwesome from 'react-native-vector-icons/FontAwesome';
+ import Kohana from './TextInput/Kohana';
 
 class AddictionLevel extends Component {
   constructor(props) {
-    super(props)
+    super(props);
+    this.state = {
+      pricePerPack: 0,
+      cigaretePerDay: 0,
+    };
+    this.setStateFromForm = this.setStateFromForm.bind(this)
+  }
+
+  setStateFromForm(state) {
+    return (e) => {
+      const changes = {};
+      changes[state] = e.target.value
+      this.setState(changes)
+      alert(JSON.stringify(this.state))
+    }
   }
 
   render() {
-    return(
-      <Card>
-      <KeyboardAvoidingView
-        behavior="position"
-        keyboardVerticalOffset= {60}
+    return (
+      <View
+      style={{padding: 4}}
       >
-          <FormLabel>Average Pack Per day: </FormLabel>
-          <FormInput
-            onKeyBoardChange={(e) => { console.log(e) }} />
-          <FormLabel>Price Per Pack: </FormLabel>
-          <FormInput
-            onKeyBoardChange={(e) => { console.log(e) }} />
-
-        <View style={{ height: 10 }} />
-      </KeyboardAvoidingView>
-      </Card>
+        <View
+        style={{ paddingLeft: 20 }}
+        >
+          <Text
+          style={styles.headerStyling}
+          >
+            Addiction Info
+          </Text>
+        </View>
+        <Divider style={{ backgroundColor: '#9E9E9E' }} />
+        <View
+        style={{ marginBottom: 10 }}
+        />
+        <Kohana
+         style={{ backgroundColor: '#e3871fff', width: 230, marginBottom: 10 }}
+         label={'Cigarete price per pack'}
+         iconClass={FontAwesome}
+         iconName={'money'}
+         iconColor={'white'}
+         labelStyle={{ color: 'white' }}
+         inputStyle={{ color: 'white' }}
+         useNativeDriver
+         onChangeText={this.setStateFromForm('cigaretePerDay')}
+        />
+        <Kohana
+         style={{ backgroundColor: '#e3871fff', width: 140, marginBottom: 5 }}
+         label={'Cigar per day'}
+         iconClass={FontAwesome}
+         iconName={'minus'}
+         iconColor={'white'}
+         labelStyle={{ color: 'white' }}
+         inputStyle={{ color: 'white' }}
+         useNativeDriver
+         onChangeText={this.setStateFromForm('pricePerPack')}
+        />
+      </View>
     )
   }
+  // render() {
+  //   return(
+  //     <Card>
+  //     <KeyboardAvoidingView
+  //       behavior="position"
+  //       keyboardVerticalOffset= {60}
+  //     >
+  //         <FormLabel>Average Pack Per day: </FormLabel>
+  //         <FormInput
+  //           onKeyBoardChange={(e) => { console.log(e) }} />
+  //         <FormLabel>Price Per Pack: </FormLabel>
+  //         <FormInput
+  //           onKeyBoardChange={(e) => { console.log(e) }} />
+  //
+  //       <View style={{ height: 10 }} />
+  //     </KeyboardAvoidingView>
+  //     </Card>
+  //   )
+  // }
 }
 
 
 
-// REACT - REDUX 
+// REACT - REDUX
 
 // const mapState = (state) => {
 //   return {
@@ -68,5 +128,15 @@ class AddictionLevel extends Component {
 
 // export default connectedComponent
 
+const styles = StyleSheet.create({
+  upperPersonalInfoContainer: {
+    flex: 1,
+    flexDirection: 'row'
+  },
+  headerStyling: {
+    fontFamily: "sans-serif-light",
+    fontSize: 40,
+  }
+})
 
 export default AddictionLevel;

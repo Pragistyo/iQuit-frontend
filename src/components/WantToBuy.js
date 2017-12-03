@@ -42,7 +42,7 @@ class WantToBuy extends Component {
               Rp. {this.props.wishlists[0].price}
             </Text>
             <Text style={styles.detailStyling}>
-            Tap for details.. 
+            Tap for details..
             </Text>
           </View>
         </View>)
