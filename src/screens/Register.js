@@ -35,6 +35,7 @@ class Register extends Component {
     // })()
     // alert('raw'+JSON.stringify(this.props.registerData))
     this.props.submitData(this.props.registerData);
+    this.props.activateSwitchScreen();
   }
 
   componentDidMount() {

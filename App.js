@@ -3,27 +3,35 @@ import { Provider } from 'react-redux';
 import { StyleSheet, Text, View, AsyncStorage} from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import ScrollableTabView, {DefaultTabBar} from 'react-native-scrollable-tab-view';
+import axios from 'axios';
 
 import store from './src/redux/store';
+import userActions from './src/redux/actions/user';
+
 import Home from './src/screens/Home';
-import DiscussionBoard from './src/screens/MessageBoard';
+import DiscussionBoard from './src/screens/DiscussionBoard';
 import Register from './src/screens/Register';
+import SplashScreen from './src/screens/SplashScreen';
 // import DiscussionBoard from './src/screens/DiscussionBoard';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      regCheck: 'loading'
+      regCheck: 'loading',
+      userData: {},
     }
   }
 
   componentDidMount() {
     (async () => {
-      const userData = await AsyncStorage.getItem('userData');
-      if(userData) {
+      const userId = await AsyncStorage.getItem('userId');
+      if(userId) {
+        const userData = await axios.get(`http://35.198.215.58/users/${userId}`);
+        // store.dispatch(userActions.setUserData(userData.data))
         this.setState({
-          regCheck: 'registered'
+          regCheck: 'registered',
+          userData: userData.data,
         })
       } else {
         this.setState({
@@ -34,19 +42,16 @@ export default class App extends React.Component {
   }
 
   render() {
-    const route = TabNavigator({
-      Home: {
-        screen: Home
-      }
-    })
     if(this.state.regCheck === 'loading') {
-      return (<View/>)
+      return (
+        <SplashScreen/>
+      )
     } else if (this.state.regCheck === 'registered') {
       return (
         <Provider store={store}>
 
           <ScrollableTabView>
-            <Home tabLabel="Dashboard"/>
+            <Home userData={this.state.userData} tabLabel="Dashboard"/>
             <DiscussionBoard tabLabel="Discussion Board"/>
           </ScrollableTabView>
 
@@ -55,7 +60,7 @@ export default class App extends React.Component {
     } else if (this.state.regCheck === 'notRegistered') {
       return (
         <Provider store={store}>
-          <Register/>
+          <Register activateSwitchScreen={() => {this.setState({activated: true})}}/>
         </Provider>
       )
     }

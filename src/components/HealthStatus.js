@@ -45,7 +45,7 @@ class HealthStatus extends Component {
             {'Nicotine Amount: '}
           </Text>
           <Text>
-            {this.props.nicotineAmount} kg
+            {this.props.nicotineAmount} mg
           </Text>
         </View>
 
@@ -58,7 +58,7 @@ class HealthStatus extends Component {
             {'Tar Amount: '}
           </Text>
           <Text>
-            {this.props.tarAmount} kg
+            {this.props.tarAmount} mg
           </Text>
         </View>
 
@@ -68,7 +68,7 @@ class HealthStatus extends Component {
           color="#ef6c00"
           />
           <Text style={styles.strong}>
-            {'Cancer Chance: '}
+            {'Cancer Chance Increased: '}
           </Text>
           <Text>
             {this.props.increasedCancerChance.toString()}

@@ -71,7 +71,7 @@ const submitData = (registerData) => {
       const { data } = await axios.post('http://35.198.215.58/auth/register', dataToBeSend);
       dispatch(userData(data));
       // alert(JSON.stringify(data))
-      await AsyncStorage.setItem('userData', JSON.stringify(data))
+      await AsyncStorage.setItem('userId', data._id)
     } catch (e) {
       console.log('---------------000000000000000================-----------');
       console.log(e);
