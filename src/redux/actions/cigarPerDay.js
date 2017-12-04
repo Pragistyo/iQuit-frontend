@@ -1,5 +1,7 @@
 import { AsyncStorage } from 'react-native';
 
+import healthStatusActions from './healthStatus';
+
 function getCigarFromStorage() {
   return async (dispatch) => {
     // await AsyncStorage.setItem('cigarConsumed', '0');
@@ -11,8 +13,10 @@ function getCigarFromStorage() {
 function consumeOneCigar(currentCigar) {
   return async (dispatch) => {
     try {
-      await AsyncStorage.setItem('cigarConsumed', (currentCigar+1).toString());
-      dispatch(setCigarConsumed(currentCigar+1));
+      const sumCigar = currentCigar+1;
+      await AsyncStorage.setItem('cigarConsumed', (sumCigar).toString());
+      dispatch(setCigarConsumed(sumCigar));
+      dispatch(healthStatusActions.fetchData(sum))
     } catch (e) {
       alert(e)
     } finally {
