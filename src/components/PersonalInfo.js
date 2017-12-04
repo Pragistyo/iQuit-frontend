@@ -73,7 +73,7 @@ class PersonalInfo extends Component {
          labelStyle={{ color: 'white' }}
          inputStyle={{ color: 'white' }}
          useNativeDriver
-         onChangeText={this.setStateFromForm('age')}
+         onChangeText={(e) => { this.props.setAge(e) }}
         />
       </View>
     )

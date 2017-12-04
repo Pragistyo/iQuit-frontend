@@ -25,6 +25,9 @@ function reducer(state=defaultState, action) {
     case actions.setInterests().type:
       return Object.assign({}, state, action.state);
 
+    case actions.userData().type:
+      return Object.assign({}, state, action.state);
+
     default:
       return state;
   }
