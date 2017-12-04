@@ -6,6 +6,7 @@ import recommendationItemsReducer from './recommendationItems';
 import registerReducer from './register';
 import userReducer from './user';
 import wantToBuyReducer from './wantToBuy';
+import cigarPerDayReducer from './cigarPerDay';
 
 export default combineReducers({
   healthStatus: healthStatusReducer,
@@ -14,5 +15,6 @@ export default combineReducers({
   register: registerReducer,
   user: userReducer,
   wantToBuy: wantToBuyReducer,
+  cigarPerDay: cigarPerDayReducer,
   }
 )

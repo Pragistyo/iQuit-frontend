@@ -7,6 +7,7 @@ import axios from 'axios';
 
 import store from './src/redux/store';
 import userActions from './src/redux/actions/user';
+import cigarPerDayActions from './src/redux/actions/cigarPerDay';
 
 import Home from './src/screens/Home';
 import DiscussionBoard from './src/screens/DiscussionBoard';
@@ -26,9 +27,10 @@ export default class App extends React.Component {
   componentDidMount() {
     (async () => {
       const userId = await AsyncStorage.getItem('userId');
+      store.dispatch(cigarPerDayActions.getCigarFromStorage())
       if(userId) {
         const userData = await axios.get(`http://35.198.215.58/users/${userId}`);
-        // store.dispatch(userActions.setUserData(userData.data))
+        store.dispatch(userActions.setUserData(userData.data))
         this.setState({
           regCheck: 'registered',
           userData: userData.data,
