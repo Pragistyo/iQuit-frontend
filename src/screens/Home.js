@@ -12,6 +12,7 @@ import MoneySaved from '../components/MoneySaved';
 import WantToBuy from '../components/WantToBuy';
 import HealthStatus from '../components/HealthStatus';
 import TopRecommendations from '../components/TopRecommendations';
+import InputWantToBuy from '../components/InputWantToBuy';
 
 class Home extends Component {
   constructor(props) {
@@ -30,6 +31,7 @@ class Home extends Component {
         </View>
         <MoneySaved style={{ height: 100 }}/>
         <WantToBuy style={{ height: 100 }}/>
+        <InputWantToBuy/>
         <TopRecommendations style={{ height: 100 }}/>
       </ScrollView>
     );
