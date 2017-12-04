@@ -5,6 +5,7 @@ import wislistReducer from './wishlist';
 import recommendationItemsReducer from './recommendationItems';
 import registerReducer from './register';
 import userReducer from './user';
+import wantToBuyReducer from './wantToBuy';
 
 export default combineReducers({
   healthStatus: healthStatusReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
   recommendationItems: recommendationItemsReducer,
   register: registerReducer,
   user: userReducer,
+  wantToBuy: wantToBuyReducer,
   }
 )

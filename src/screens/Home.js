@@ -16,7 +16,7 @@ import TopRecommendations from '../components/TopRecommendations';
 class Home extends Component {
   constructor(props) {
     super(props);
-    alert(JSON.stringify(this.props.userData))
+    // alert(JSON.stringify(this.props.userData))
   }
 
   render() {

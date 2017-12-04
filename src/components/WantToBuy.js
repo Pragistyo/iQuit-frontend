@@ -5,6 +5,7 @@ import {
   Text,
   StyleSheet,
   View,
+  AsyncStorage,
 } from 'react-native';
 import {
   Card
@@ -85,8 +86,9 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
-    fetchData: () => {
-      dispatch(wishlistActions.fetchWishlist('5a226e63f40b25266e72f15e'));
+    fetchData: async () => {
+      const userId = await AsyncStorage.getItem('userId');
+      dispatch(wishlistActions.fetchWishlist(userId));
     },
     initWishlist: () => {
       dispatch(wishlistActions.initWishlist());
