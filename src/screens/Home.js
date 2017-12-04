@@ -16,11 +16,13 @@ import TopRecommendations from '../components/TopRecommendations';
 class Home extends Component {
   constructor(props) {
     super(props);
+    // alert(JSON.stringify(this.props.userData))
   }
 
   render() {
     return (
       <ScrollView>
+        <View style={styles.upperScreenMargin}/>
         <ShowLogo style={{ height: 100 }}/>
         <View style={ styles.upperComponentGrouping }>
           <HealthStatus style={{ height: 100 }}/>
@@ -39,6 +41,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginBottom: 10,
     justifyContent: 'space-around',
+  },
+
+  upperScreenMargin: {
+    marginTop: 30,
   },
 })
 

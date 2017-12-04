@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   Badge
 } from 'react-native-elements';
+import { connect } from 'react-redux';
 
 class MoneySaved extends Component {
   constructor(props) {
@@ -11,10 +12,16 @@ class MoneySaved extends Component {
   render() {
     return (
       <Badge
-        value={'Money saved so far: Rp. 0'}
+        value={`Money saved so far: Rp. ${this.props.moneySaved}`}
       />
     );
   }
 }
 
-export default MoneySaved;
+function mapStateToProps(state, props) {
+  return {
+    moneySaved: state.user.moneySaved
+  };
+}
+
+export default connect(mapStateToProps, null)(MoneySaved);
