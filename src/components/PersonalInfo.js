@@ -56,7 +56,7 @@ class PersonalInfo extends Component {
             label={'Name'}
             iconClass={FontAwesome}
             iconName={'user'}
-            iconColor={'#e3871fff'}
+            iconColor={'#fe7013'}
             labelStyle={{ color: '#fe7013' }}
             inputStyle={{ color: '#fe7013' }}
             useNativeDriver

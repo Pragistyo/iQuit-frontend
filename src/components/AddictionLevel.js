@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
 
-// REACT-REDUX
-// import { connect } from react-redux
-// import {} from '.../actions/index'
-
-// REACT NATIVE STYLE
 import {
   StyleSheet,
   View,
@@ -54,6 +49,17 @@ class AddictionLevel extends Component {
         style={{ marginBottom: 10 }}
         />
         <Kohana
+          style={{ backgroundColor: 'white', width: 300, marginBottom: 5, borderColor: '#fe7013', borderWidth: 2 }}
+          label={'Cigar per day (Pack)'}
+          iconClass={FontAwesome}
+          iconName={'minus'}
+          iconColor={'#fe7013'}
+          labelStyle={{ color: '#fe7013' }}
+          inputStyle={{ color: '#fe7013' }}
+          useNativeDriver
+          onChangeText={(text) => { this.props.setCigarPerDay(parseInt(text)) }}
+        />
+        <Kohana
           style={{ backgroundColor: 'white', width: 300, marginBottom: 10, borderColor: '#fe7013', borderWidth: 2 }}
          label={'Cigarete price per pack'}
          iconClass={FontAwesome}
@@ -63,17 +69,6 @@ class AddictionLevel extends Component {
           inputStyle={{ color: '#fe7013' }}
          useNativeDriver
          onChangeText={(text) => { this.props.setPricePerPack(parseInt(text)) }}
-        />
-        <Kohana
-          style={{ backgroundColor: 'white', width: 300, marginBottom: 5, borderColor: '#fe7013', borderWidth: 2}}
-         label={'Cigar per day'}
-         iconClass={FontAwesome}
-         iconName={'minus'}
-          iconColor={'#fe7013'}
-          labelStyle={{ color: '#fe7013' }}
-          inputStyle={{ color: '#fe7013' }}
-         useNativeDriver
-         onChangeText={ (text) => { this.props.setCigarPerDay(parseInt(text)) } }
         />
         <View style={{ height: 60 }} />
       </View>
@@ -113,7 +108,6 @@ const styles = StyleSheet.create({
   }
 })
 
-// export default AddictionLevel;
 function mapStateToProps(state, props) {
   return {
     pricePerPack: state.register.pricePerPack,

@@ -12,32 +12,14 @@ import {
 import ViewPager from 'react-native-viewpager';
 import StepIndicator from 'react-native-step-indicator';
 const PAGES = ['STEP 1', 'STEP 2', 'STEP 3', 'STEP 4', 'STEP 5'];
-// const PAGES = [1,2,3]
 
+// components
 import PersonalInfo from '../components/PersonalInfo';
 import AddictionLevel from '../components/AddictionLevel';
 import Interests from '../components/Interests';
 
-
-const firstIndicatorStyles = {
-    stepIndicatorSize: 30,
-    currentStepIndicatorSize: 40,
-    separatorStrokeWidth: 3,
-    currentStepStrokeWidth: 5,
-    separatorFinishedColor: '#4aae4f',
-    separatorUnFinishedColor: '#a4d4a5',
-    stepIndicatorFinishedColor: '#4aae4f',
-    stepIndicatorUnFinishedColor: '#a4d4a5',
-    stepIndicatorCurrentColor: '#ffffff',
-    stepIndicatorLabelFontSize: 15,
-    currentStepIndicatorLabelFontSize: 15,
-    stepIndicatorLabelCurrentColor: '#000000',
-    stepIndicatorLabelFinishedColor: '#ffffff',
-    stepIndicatorLabelUnFinishedColor: 'rgba(255,255,255,0.5)',
-    labelColor: '#666666',
-    labelSize: 12,
-    currentStepLabelColor: '#4aae4f'
-}
+// actions
+import registerActions from '../redux/actions/register';
 
 const secondIndicatorStyles = {
     stepIndicatorSize: 25,
@@ -63,30 +45,6 @@ const secondIndicatorStyles = {
     currentStepLabelColor: '#fe7013'
 }
 
-const thirdIndicatorStyles = {
-    stepIndicatorSize: 25,
-    currentStepIndicatorSize: 30,
-    separatorStrokeWidth: 2,
-    currentStepStrokeWidth: 3,
-    stepStrokeCurrentColor: '#7eaec4',
-    stepStrokeWidth: 3,
-    stepStrokeFinishedColor: '#7eaec4',
-    stepStrokeUnFinishedColor: '#dedede',
-    separatorFinishedColor: '#7eaec4',
-    separatorUnFinishedColor: '#dedede',
-    stepIndicatorFinishedColor: '#7eaec4',
-    stepIndicatorUnFinishedColor: '#ffffff',
-    stepIndicatorCurrentColor: '#ffffff',
-    stepIndicatorLabelFontSize: 0,
-    currentStepIndicatorLabelFontSize: 0,
-    stepIndicatorLabelCurrentColor: 'transparent',
-    stepIndicatorLabelFinishedColor: 'transparent',
-    stepIndicatorLabelUnFinishedColor: 'transparent',
-    labelColor: '#999999',
-    labelSize: 13,
-    currentStepLabelColor: '#7eaec4'
-}
-
 export default class StepRegister extends Component {
 
     constructor(props) {
@@ -101,7 +59,7 @@ export default class StepRegister extends Component {
         }
     }
 
-    submitActions() {
+    onFinishPress () {
         // const navigate = this.props.navigation.navigate
         // console.log(this.props.navigation.navigate)
         alert('submit Profile')
@@ -124,11 +82,6 @@ export default class StepRegister extends Component {
                     renderPage={this.renderViewPagerPage}
                     onChangePage={(page) => { this.setState({ currentPage: page }) }}
                 />
-                {/* <Button
-                    title='PROFILE SUBMIT'
-                    color='#fe7013'
-                    onPress={this.submitActions}
-                /> */}
                 {this.buttonRender.call(this)}
 
             </View>
@@ -140,8 +93,9 @@ export default class StepRegister extends Component {
             return (
                 <Button
                     title='PROFILE SUBMIT'
-                    color='darkgray'
-                    onPress={this.submitActions}
+                    color='#fe7013'
+                    disabled= {true}
+                    onPress={this.onFinishPress}
                 />   
             )
         } else {
@@ -149,7 +103,7 @@ export default class StepRegister extends Component {
                 <Button
                     title='PROFILE SUBMIT'
                     color='#fe7013'
-                    onPress={this.submitActions}
+                    onPress={this.onFinishPress}
                 />
             ) 
         }
@@ -212,12 +166,13 @@ export default class StepRegister extends Component {
             </ScrollView>)
         } else if (data === 'STEP 5') {
             return (<ScrollView style={{ flex: 1 }}>
-                <View style={styles.page}>
-                    <Text>{data}</Text>
+                <View style={{paddingTop:2, flex:1, justifyContent: 'center', alignItems:'center'}}>
+                <Text>{data}</Text>
                 </View>
             </ScrollView>)
         }
     }
+
 
 }
 
