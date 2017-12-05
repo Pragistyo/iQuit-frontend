@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { Dimensions, View, Text } from 'react-native'
 import {
-  Badge
+  Badge,
+  Card
 } from 'react-native-elements';
 import { connect } from 'react-redux';
 
@@ -11,9 +13,18 @@ class MoneySaved extends Component {
 
   render() {
     return (
-      <Badge
-        value={`Money saved so far: Rp. ${this.props.moneySaved}`}
-      />
+      // <Badge
+      //   value={`Money saved so far: Rp. ${this.props.moneySaved}`}
+      // />
+      <Card
+      containerStyle={{ width: Dimensions.get('window').width }}
+      >
+        <View>
+          <Text>
+            You've saved Rp. {this.props.moneySaved}
+          </Text>
+        </View>
+      </Card>
     );
   }
 }

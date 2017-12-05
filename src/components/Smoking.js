@@ -3,10 +3,11 @@ import {
   Button,
 } from 'react-native-elements';
 import {
-  TouchableOpacity,
+  TouchableHighlight,
   Image,
   StyleSheet,
   AsyncStorage,
+  Text
 } from 'react-native';
 import { connect } from 'react-redux';
 
@@ -20,14 +21,24 @@ class Smoking extends Component {
 
   render() {
     return (
-      <Button
-        title={`${this.props.currentCigar} + 1`}
-        backgroundColor='#e3871fff'
-        containerViewStyle={styles.styling}
-        onPress={async () => {
+      // <Button
+      //   title={`${this.props.currentCigar} + 1`}
+      //   backgroundColor='#e3871fff'
+      //   containerViewStyle={styles.styling}
+      //   onPress={async () => {
+      //     this.props.consumeOneCigar(this.props.currentCigar)
+      //   }}
+      // />
+      <TouchableHighlight
+      style={styles.circle}
+      onPress={async () => {
           this.props.consumeOneCigar(this.props.currentCigar)
-        }}
-      />
+      }}
+      >
+      <Text style={styles.touchableText}>
+      {`${this.props.currentCigar} + 1`}
+      </Text>
+      </TouchableHighlight>
     )
   }
 }
@@ -36,6 +47,17 @@ const styles = StyleSheet.create({
   styling: {
     width: 100,
     marginTop: 15,
+  },
+  circle: {
+    width: 100,
+    height: 100,
+    borderRadius: 100/2,
+    backgroundColor: '#fe7013'
+  },
+  touchableText: {
+    marginTop: 40,
+    color:'#fff',
+    textAlign:'center'
   }
 })
 

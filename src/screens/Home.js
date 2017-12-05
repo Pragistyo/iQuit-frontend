@@ -22,7 +22,7 @@ class Home extends Component {
   render() {
     return (
       <View>
-      <View style={{ backgroundColor: '#e3871fff', alignItems: 'center', top:'85%', position:'absolute', zIndex: 1, marginLeft:'27.5%' }}>
+      <View style={{ alignItems: 'center', top:'80%', position:'absolute', zIndex: 1, marginLeft:'30%' }}>
         <Smoking/>
       </View>
       <ScrollView style={{ zIndex: 0 }}>
@@ -44,10 +44,13 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     justifyContent: 'space-around',
   },
-
   upperScreenMargin: {
     marginTop: 30,
   },
+  headerText: {
+    fontSize: 25,
+    fontWeight: 'bold',
+  }
 })
 
 export default Home;
