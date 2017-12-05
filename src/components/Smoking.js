@@ -21,7 +21,7 @@ class Smoking extends Component {
   render() {
     return (
       <Button
-        title={`Press when you smoke. ${this.props.currentCigar}`}
+        title={`${this.props.currentCigar} + 1`}
         backgroundColor='#e3871fff'
         containerViewStyle={styles.styling}
         onPress={async () => {
@@ -40,7 +40,6 @@ const styles = StyleSheet.create({
 })
 
 function mapStateToProps(state, props) {
-  console.log(JSON.stringify(state))
   return {
     currentCigar: state.cigarPerDay,
   };

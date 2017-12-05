@@ -22,11 +22,10 @@ class Home extends Component {
   render() {
     return (
       <View>
-      <View>
-        <Smoking style={{ position: 'absolute' }}/>
+      <View style={{ backgroundColor: '#e3871fff', alignItems: 'center', top:'85%', position:'absolute', zIndex: 1, marginLeft:'27.5%' }}>
+        <Smoking/>
       </View>
-      <ScrollView>
-        <View style={styles.upperScreenMargin}/>
+      <ScrollView style={{ zIndex: 0 }}>
         <View style={ styles.upperComponentGrouping }>
           <HealthStatus style={{ height: 100 }}/>
         </View>
