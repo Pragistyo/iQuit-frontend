@@ -137,41 +137,23 @@ class Interests extends Component {
   }
 
   render() {
-    // var data = [["C", "Java", "JavaScript"], ["Python", "Ruby"], ["Swift", "Objective-C"]];
-    // var langeuageData = ["Personal", "Family", "Hobby", "Charity"]
 
     return(
       <View
       style={{ padding: 4 }}
       >
-        {/* <Text>
-          Choose several category that pick your interest
-        </Text> */}
-        {/* <View>
-          {this.state.category.map((dataItem, index) => {
-            return (
-              <CheckBox
-              center
-              key={index}
-              onPress={this.CheckBox.bind(this, index)}
-              title={dataItem.name}
-              checked={dataItem.status}
-              value={dataItem.name} />
-            )
-          })}
-        </View> */}
         <Modal animationType={"slide"} transparent={false}
           visible={this.state.modalVisible}
           onRequestClose={() => { console.log("Modal has been closed.") }}>
           <View style={{ flex: 1 }}>
-            <View style={{ alignItems: 'center' }}>
-              <Text >SELECT YOUR INTEREST :</Text>
-            </View>
             <ScrollView>
+              <View style={{ alignItems: 'center' }}>
+                <Text style={{ fontSize: 20, marginBottom: 10 }}>SELECT YOUR INTEREST </Text>
+              </View>
               {this.state.category.map((dataItem, index) => {
                 return (
                   <CheckBox
-                    center
+                    // center
                     key={index}
                     onPress={this.CheckBox.bind(this, index)}
                     title={dataItem.name}
@@ -180,89 +162,30 @@ class Interests extends Component {
                 )
               })}
             </ScrollView>
-            <TouchableHighlight
+            <Button
+              color="#fe7013"
+              title="SUBMIT"
               style={{ alignItems: 'center' }}
-            onPress={() => {
+              onPress={() => {
               this.toggleModal(!this.state.modalVisible);
-              // alert(JSON.stringify(this.state.category))
               this.props.setInterests(this.state.category.filter((cat) => {
                 if(cat.status) return cat
               }))
             }}>
-              <Text>
-              SUBMIT
-              </Text>
-            </TouchableHighlight>
+            </Button>
 
           </View>
         </Modal >
 
         <Button
-          color="#e3871fff"
-          title='Choose several category that pick your interest'
+          color="#fe7013"
+          title='PICK HERE'
         onPress={() => { this.toggleModal(true) }}/>
-
-        {/* <Picker
-          selectedValue={this.state.language}
-          onValueChange={(itemValue, itemIndex) => this.setState({ language: itemValue })}>
-          {langeuageData.map((dataItem,index) => {
-            return(
-              <Picker.Item key={index} label={dataItem} value={dataItem} />
-            )
-          })}
-        </Picker> */}
       </View>
     )
   }
 }
 
-// const mapState = (state) => {
-//   return {
-//     bla: state.bla
-//   }
-// }
-
-// const mapActions = (dispatch) => {
-//   return {
-//     bla: (params) => dispatch(bla(params))
-//   }
-// }
-
-// const connectedComponent = connect(
-//   mapState,
-//   mapActions
-// )(Interests)
-
-
-// export default connectedComponent
-
-{/* <Modal animationType={"slide"} transparent={false}
-  visible={this.state.modalVisible}
-  onRequestClose={() => { console.log("Modal has been closed.") }}>
-  <View>
-    {this.state.category.map((dataItem, index) => {
-      return (
-        <CheckBox
-          center
-          key={index}
-          onPress={this.CheckBox.bind(this, index)}
-          title={dataItem.name}
-          checked={dataItem.status}
-          value={dataItem.name} />
-      )
-    })}
-    <TouchableHighlight onPress={() => {
-      this.toggleModal(!this.state.modalVisible)
-    }}>
-      <Text >Close Modal</Text>
-    </TouchableHighlight>
-
-  </View>
-</Modal >
-
-  <TouchableHighlight onPress={() => { this.toggleModal(true) }}>
-    <Text>Open Modal</Text>
-  </TouchableHighlight > */}
 
 function mapStateToProps(state, props) {
   return {

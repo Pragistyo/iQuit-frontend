@@ -3,6 +3,7 @@ import {
   StyleSheet,
   View,
   Text,
+  KeyboardAvoidingView
 } from 'react-native';
 import {
   Card,
@@ -36,45 +37,45 @@ class PersonalInfo extends Component {
 
   render() {
     return (
-      <View
-      style={{padding: 4}}
-      >
-        <View
-        style={{ paddingLeft: 20 }}
-        >
-          <Text
-          style={styles.headerStyling}
-          >
-            Personal Info {this.props.name}
-          </Text>
-        </View>
-        <Divider style={{ backgroundColor: '#9E9E9E' }} />
-        <View
-        style={{ marginBottom: 10 }}
-        />
-        <Kohana
-         style={{ backgroundColor: '#e3871fff', width: 300, marginBottom: 5 }}
-         label={'Name'}
-         iconClass={FontAwesome}
-         iconName={'user'}
-         iconColor={'white'}
-         labelStyle={{ color: 'white' }}
-         inputStyle={{ color: 'white' }}
-         useNativeDriver
-         // onChangeText={this.setStateFromForm('name')}
-         onChangeText={(e) => { this.props.setName(e) }}
-        />
-        <Kohana
-         style={{ backgroundColor: '#e3871fff', width: 130, marginBottom: 10 }}
-         label={'Age'}
-         iconClass={FontAwesome}
-         iconName={'birthday-cake'}
-         iconColor={'white'}
-         labelStyle={{ color: 'white' }}
-         inputStyle={{ color: 'white' }}
-         useNativeDriver
-         onChangeText={(e) => { this.props.setAge(e) }}
-        />
+      <View style={{padding: 4}}>
+          {/* <View style={{ paddingLeft: 20 }}>
+            <Text style={styles.headerStyling}>
+              Personal Info {this.props.name}
+            </Text>
+          </View> */}
+          <Divider style={{ backgroundColor: '#9E9E9E' }} />
+          <View
+          style={{ marginBottom: 10 }}
+          />
+           {/* <KeyboardAvoidingView
+          style={{}}
+          behavior="position"
+          > */}
+            <Kohana
+            style={{ backgroundColor: 'white', width: 300, marginBottom: 5, borderColor: '#fe7013', borderWidth: 2 }}
+            label={'Name'}
+            iconClass={FontAwesome}
+            iconName={'user'}
+            iconColor={'#e3871fff'}
+            labelStyle={{ color: '#fe7013' }}
+            inputStyle={{ color: '#fe7013' }}
+            useNativeDriver
+            // onChangeText={this.setStateFromForm('name')}
+            onChangeText={(e) => { this.props.setName(e) }}
+            />
+            <Kohana
+            style={{ backgroundColor: 'white', width: 300, marginBottom: 10, borderColor: '#fe7013', borderWidth: 2 }}
+            label={'Age'}
+            iconClass={FontAwesome}
+            iconName={'birthday-cake'}
+            iconColor={'#fe7013'}
+            labelStyle={{ color: '#fe7013' }}
+            inputStyle={{ color: '#fe7013' }}
+            useNativeDriver
+            onChangeText={(e) => { this.props.setAge(e) }}
+            />
+            <View style={{ height: 60 }} />
+        {/* </KeyboardAvoidingView> */}
       </View>
     )
   }

@@ -6,11 +6,12 @@ import {
     Text,
     ScrollView,
     Button,
-    Modal
+    Modal,
+    KeyboardAvoidingView
 } from 'react-native';
 import ViewPager from 'react-native-viewpager';
 import StepIndicator from 'react-native-step-indicator';
-const PAGES = ['STEP 1', 'STEP 2', 'STEP 3'];
+const PAGES = ['STEP 1', 'STEP 2', 'STEP 3', 'STEP 4', 'STEP 5'];
 // const PAGES = [1,2,3]
 
 import PersonalInfo from '../components/PersonalInfo';
@@ -96,7 +97,7 @@ export default class StepRegister extends Component {
         this.state = {
             dataSource: dataSource.cloneWithPages(PAGES),
             currentPage: 0,
-            color: 'darkgray'
+            buttonProfileFlag: false
         }
     }
 
@@ -109,15 +110,13 @@ export default class StepRegister extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <View style={styles.judul}>
-                    <Text>PLEASE COMPLETE YOUR REGISTRATION</Text>
-                </View>
+               
                 <View style={styles.stepIndicator}>
                     <StepIndicator
-                        stepCount={3}
+                        stepCount={5}
                         customStyles={secondIndicatorStyles}
                         currentPosition={this.state.currentPage}
-                        labels={["Profile Info", "Addiction Level", "Interests"]} />
+                        labels={["Welcome !", "Profile Info", "Addiction Level", "Interests", "Complete Registration"]} />
                 </View>
 
                 <ViewPager
@@ -125,35 +124,96 @@ export default class StepRegister extends Component {
                     renderPage={this.renderViewPagerPage}
                     onChangePage={(page) => { this.setState({ currentPage: page }) }}
                 />
-                <Button
+                {/* <Button
                     title='PROFILE SUBMIT'
+                    color='#fe7013'
                     onPress={this.submitActions}
-                />
+                /> */}
+                {this.buttonRender.call(this)}
 
             </View>
         );
+    }
+
+    buttonRender() {
+        if (!this.state.buttonProfileFlag){
+            return (
+                <Button
+                    title='PROFILE SUBMIT'
+                    color='darkgray'
+                    onPress={this.submitActions}
+                />   
+            )
+        } else {
+            return(
+                <Button
+                    title='PROFILE SUBMIT'
+                    color='#fe7013'
+                    onPress={this.submitActions}
+                />
+            ) 
+        }
     }
 
     renderViewPagerPage(data) {
         if (data === 'STEP 1') {
             return (<ScrollView style={{ flex: 1 }}>
                 <View style={styles.page}>
-                    <Text>{data}</Text>
-                    <PersonalInfo />
+                    <View style={{paddingTop:50, alignItems:'center'}}>
+                        <Text style={{fontSize:28}}>Hi, Welcome To iQuit !</Text>
+                        <Text syle={{fontSize:28}}> We're gonna help you decrease your smoke addition ! </Text>
+                        {/* <Text syle={{fontSize:42}}> Please Swipe, and Complete REGISTRATION</Text> */}
+                    </View>
                 </View>
             </ScrollView>)
         } else if (data === 'STEP 2') {
             return (<ScrollView style={{ flex: 1 }}>
-                <View style={styles.page}>
-                    <Text>{data}</Text>
-                    <AddictionLevel />
+                <View style={{paddingTop:50, flex:1, justifyContent:'center', alignItems:'center'}}>
+                    <KeyboardAvoidingView
+                        style={{}}
+                        behavior="position"
+                    >
+                        <View style={{}}>
+                            <Text style={styles.headerStyling}>
+                                We need Your Personal Information
+                            </Text>
+                        </View>
+                        <PersonalInfo />
+                        <View style={{ height: 30 }} />
+                    </KeyboardAvoidingView>
                 </View>
             </ScrollView>)
         } else if (data === 'STEP 3') {
             return (<ScrollView style={{ flex: 1 }}>
                 <View style={styles.page}>
+                    <KeyboardAvoidingView
+                        style={{}}
+                        behavior="position"
+                    >
+                        <View style={{}}>
+                            <Text style={styles.headerStyling}>
+                                Tell us about your smoke addiciton:
+                            </Text>
+                        </View>
+                        <AddictionLevel/>
+                        <View style={{ height: 30 }} />
+                    </KeyboardAvoidingView>
+                </View>
+            </ScrollView>)
+        } else if (data === 'STEP 4') {
+            return (<ScrollView style={{ flex: 1 }}>
+                <View style={styles.page}>
+                    {/* <Text>{data}</Text> */}
+                    <Text>Pick Your Kind Of Interest: </Text>
+                    <View style={{ paddingTop: 70, alignItems: 'center' }}>
+                        <Interests />
+                    </View>
+                </View>
+            </ScrollView>)
+        } else if (data === 'STEP 5') {
+            return (<ScrollView style={{ flex: 1 }}>
+                <View style={styles.page}>
                     <Text>{data}</Text>
-                    <Interests />
                 </View>
             </ScrollView>)
         }
@@ -170,6 +230,7 @@ const styles = StyleSheet.create({
         marginVertical: 50,
     },
     page: {
+        paddingTop: 50,
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
@@ -177,5 +238,9 @@ const styles = StyleSheet.create({
     judul: {
         alignItems: 'center',
         paddingTop: 50
+    },
+    headerStyling: {
+        fontFamily: "sans-serif-light",
+        fontSize: 20,
     }
 });

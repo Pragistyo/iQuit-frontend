@@ -49,41 +49,33 @@ class AddictionLevel extends Component {
       <View
       style={{padding: 4}}
       >
-        <View
-        style={{ paddingLeft: 20 }}
-        >
-          <Text
-          style={styles.headerStyling}
-          >
-            Addiction Info
-          </Text>
-        </View>
         <Divider style={{ backgroundColor: '#9E9E9E' }} />
         <View
         style={{ marginBottom: 10 }}
         />
         <Kohana
-         style={{ backgroundColor: '#e3871fff', width: 230, marginBottom: 10 }}
+          style={{ backgroundColor: 'white', width: 300, marginBottom: 10, borderColor: '#fe7013', borderWidth: 2 }}
          label={'Cigarete price per pack'}
          iconClass={FontAwesome}
          iconName={'money'}
-         iconColor={'white'}
-         labelStyle={{ color: 'white' }}
-         inputStyle={{ color: 'white' }}
+          iconColor={'#fe7013'}
+          labelStyle={{ color: '#fe7013' }}
+          inputStyle={{ color: '#fe7013' }}
          useNativeDriver
          onChangeText={(text) => { this.props.setPricePerPack(parseInt(text)) }}
         />
         <Kohana
-         style={{ backgroundColor: '#e3871fff', width: 140, marginBottom: 5 }}
+          style={{ backgroundColor: 'white', width: 300, marginBottom: 5, borderColor: '#fe7013', borderWidth: 2}}
          label={'Cigar per day'}
          iconClass={FontAwesome}
          iconName={'minus'}
-         iconColor={'white'}
-         labelStyle={{ color: 'white' }}
-         inputStyle={{ color: 'white' }}
+          iconColor={'#fe7013'}
+          labelStyle={{ color: '#fe7013' }}
+          inputStyle={{ color: '#fe7013' }}
          useNativeDriver
          onChangeText={ (text) => { this.props.setCigarPerDay(parseInt(text)) } }
         />
+        <View style={{ height: 60 }} />
       </View>
     )
   }
@@ -109,27 +101,6 @@ class AddictionLevel extends Component {
 }
 
 
-
-// REACT - REDUX
-
-// const mapState = (state) => {
-//   return {
-//     bla: state.something.bla
-//   }
-// }
-
-// const mapActions = (dispatch) => {
-//   return {
-//     bla: (params) => dispatch(bla(params))
-//   }
-// }
-
-// const connectedComponent = connect(
-//   mapActions,
-//   mapState
-// )(AddictionLevel)
-
-// export default connectedComponent
 
 const styles = StyleSheet.create({
   upperPersonalInfoContainer: {
