@@ -23,28 +23,45 @@ class Home extends Component {
     // alert(JSON.stringify(this.props.userData))
   }
 
+  // render() {
+  //   return (
+  //     <ScrollView>
+  //       <Button
+  //       title="reset"
+  //       onPress={async () => {
+  //         await AsyncStorage.removeItem('userId');
+  //         await AsyncStorage.removeItem('cigarConsumed');
+  //
+  //       }}
+  //       />
+  //       <View style={styles.upperScreenMargin}/>
+  //       <ShowLogo style={{ height: 100 }}/>
+  //       <View style={ styles.upperComponentGrouping }>
+  //         <HealthStatus style={{ height: 100 }}/>
+  //         <Smoking style={{ height: 100 }}/>
+  //       </View>
+  //
+  //       <WantToBuy style={{ height: 100 }}/>
+  //       <InputWantToBuy/>
+  //       <TopRecommendations style={{ height: 100 }}/>
+  //     </ScrollView>
+  //   );
+  // }
   render() {
     return (
-      <ScrollView>
-        <Button
-        title="reset"
-        onPress={async () => {
-          await AsyncStorage.removeItem('userId');
-          await AsyncStorage.removeItem('cigarConsumed');
-
-        }}
-        />
-        <View style={styles.upperScreenMargin}/>
-        <ShowLogo style={{ height: 100 }}/>
+      <View>
+      <View style={{ alignItems: 'center', top:'80%', position:'absolute', zIndex: 1, marginLeft:'30%' }}>
+        <Smoking/>
+      </View>
+      <ScrollView style={{ zIndex: 0 }}>
         <View style={ styles.upperComponentGrouping }>
           <HealthStatus style={{ height: 100 }}/>
-          <Smoking style={{ height: 100 }}/>
         </View>
-        
+        <MoneySaved style={{ height: 100 }}/>
         <WantToBuy style={{ height: 100 }}/>
-        <InputWantToBuy/>
         <TopRecommendations style={{ height: 100 }}/>
       </ScrollView>
+      </View>
     );
   }
 }

@@ -52,7 +52,10 @@ export default class App extends React.PureComponent {
       return (
         <Provider store={store}>
 
-          <ScrollableTabView>
+          <ScrollableTabView
+          tabBarPosition= 'bottom'
+           tabBarActiveTextColor= '#fe7013'
+          >
             <Home userData={this.state.userData} tabLabel="Dashboard"/>
             <DiscussionBoard tabLabel="Discussion Board"/>
           </ScrollableTabView>
@@ -64,7 +67,7 @@ export default class App extends React.PureComponent {
         <Provider store={store}>
           <Register activateSwitchScreen={() => {
               this.setState({ regCheck: 'registered' });
-              
+
             }
           }/>
         </Provider>
