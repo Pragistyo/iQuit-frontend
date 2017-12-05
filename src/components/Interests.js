@@ -164,14 +164,13 @@ class Interests extends Component {
           visible={this.state.modalVisible}
           onRequestClose={() => { console.log("Modal has been closed.") }}>
           <View style={{ flex: 1 }}>
-            <View style={{ alignItems: 'center' }}>
-              <Text >SELECT YOUR INTEREST :</Text>
-            </View>
             <ScrollView>
+              <View style={{ alignItems: 'center' }}>
+                <Text style={{ fontSize: 20, marginBottom: 10 }}>SELECT YOUR INTEREST </Text>
+              </View>
               {this.state.category.map((dataItem, index) => {
                 return (
                   <CheckBox
-                    center
                     key={index}
                     onPress={this.CheckBox.bind(this, index)}
                     title={dataItem.name}
@@ -180,26 +179,24 @@ class Interests extends Component {
                 )
               })}
             </ScrollView>
-            <TouchableHighlight
+            <Button
+              color="#fe7013"
+              title="SUBMIT"
               style={{ alignItems: 'center' }}
             onPress={() => {
               this.toggleModal(!this.state.modalVisible);
-              // alert(JSON.stringify(this.state.category))
               this.props.setInterests(this.state.category.filter((cat) => {
                 if(cat.status) return cat
               }))
             }}>
-              <Text>
-              SUBMIT
-              </Text>
-            </TouchableHighlight>
+            </Button>
 
           </View>
         </Modal >
 
         <Button
-          color="#e3871fff"
-          title='Choose several category that pick your interest'
+        color="#fe7013"
+        title='PICK HERE'
         onPress={() => { this.toggleModal(true) }}/>
 
         {/* <Picker

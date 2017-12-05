@@ -4,7 +4,6 @@ import {
   ScrollView,
   Text,
   StyleSheet,
-
   AsyncStorage,
   Button,
 } from 'react-native';
@@ -21,6 +20,7 @@ class Home extends Component {
   constructor(props) {
     super(props);
     // alert(JSON.stringify(this.props.userData))
+    AsyncStorage.removeItem('userId')
   }
 
   // render() {

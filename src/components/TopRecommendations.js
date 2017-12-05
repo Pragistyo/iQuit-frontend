@@ -26,11 +26,20 @@ class TopRecommendations extends Component {
   }
 
   fetchRecommendation() {
-    const randomCategoryFromUser = Math.ceil( Math.random() * this.props.interests.length-1 )
-    const catId = interestToCatId(this.props.interests[randomCategoryFromUser]);
-    const cigareteCostForThreeMonths = this.props.pricePerPack * 120
-    console.log('========> cigarete 4 mon',cigareteCostForThreeMonths)
-    this.props.getRecommendationsByCategory(catId, cigareteCostForThreeMonths)
+    if (this.props.interests) {
+      const randomCategoryFromUser = Math.ceil( Math.random() * this.props.interests.length-1 )
+      const catId = interestToCatId(this.props.interests[randomCategoryFromUser]);
+      const cigareteCostForThreeMonths = this.props.pricePerPack * 120
+      console.log('========> cigarete 4 mon',cigareteCostForThreeMonths)
+      this.props.getRecommendationsByCategory(catId, cigareteCostForThreeMonths)
+    }
+  }
+
+  componentDidUpdate() {
+    if(this.props.recommendations.length<1) {
+      this.fetchRecommendation();
+    }
+
   }
 
   render() {

@@ -1,10 +1,4 @@
 import React, { Component } from 'react';
-
-// REACT-REDUX
-// import { connect } from react-redux
-// import {} from '.../actions/index'
-
-// REACT NATIVE STYLE
 import {
   StyleSheet,
   View,
@@ -49,40 +43,33 @@ class AddictionLevel extends Component {
       <View
       style={{padding: 4}}
       >
-        <View
-        style={{ paddingLeft: 20 }}
-        >
-          <Text
-          style={styles.headerStyling}
-          >
-            Addiction Info
-          </Text>
-        </View>
         <Divider style={{ backgroundColor: '#9E9E9E' }} />
         <View
         style={{ marginBottom: 10 }}
         />
         <Kohana
-         style={{ backgroundColor: '#e3871fff', width: 230, marginBottom: 10 }}
-         label={'Cigarete price per pack'}
-         iconClass={FontAwesome}
-         iconName={'money'}
-         iconColor={'white'}
-         labelStyle={{ color: 'white' }}
-         inputStyle={{ color: 'white' }}
-         useNativeDriver
-         onChangeText={(text) => { this.props.setPricePerPack(parseInt(text)) }}
+          style={{ backgroundColor: 'white', width: 300, marginBottom: 5, borderColor: '#fe7013', borderWidth: 2 }}
+          label={'Cigar per day (Pack)'}
+          iconClass={FontAwesome}
+          iconName={'minus'}
+          iconColor={'#fe7013'}
+          labelStyle={{ color: '#fe7013' }}
+          inputStyle={{ color: '#fe7013' }}
+          useNativeDriver
+          onChangeText={(text) => { this.props.setCigarPerDay(parseInt(text)) }}
+          value={this.props.cigarPerDay}
         />
         <Kohana
-         style={{ backgroundColor: '#e3871fff', width: 140, marginBottom: 5 }}
-         label={'Cigar per day'}
-         iconClass={FontAwesome}
-         iconName={'minus'}
-         iconColor={'white'}
-         labelStyle={{ color: 'white' }}
-         inputStyle={{ color: 'white' }}
+          style={{ backgroundColor: 'white', width: 300, marginBottom: 10, borderColor: '#fe7013', borderWidth: 2 }}
+          label={'Cigarete price per pack'}
+          iconClass={FontAwesome}
+          iconName={'money'}
+          iconColor={'#fe7013'}
+          labelStyle={{ color: '#fe7013' }}
+          inputStyle={{ color: '#fe7013' }}
          useNativeDriver
-         onChangeText={ (text) => { this.props.setCigarPerDay(parseInt(text)) } }
+         onChangeText={ (text) => { this.props.setPricePerPack(parseInt(text)) } }
+         value={this.props.pricePerPack}
         />
       </View>
     )

@@ -12,6 +12,7 @@ import cigarPerDayActions from './src/redux/actions/cigarPerDay';
 import Home from './src/screens/Home';
 import DiscussionBoard from './src/screens/DiscussionBoard';
 import Register from './src/screens/Register';
+import StepRegister from './src/screens/StepRegister';
 import SplashScreen from './src/screens/SplashScreen';
 // import DiscussionBoard from './src/screens/DiscussionBoard';
 
@@ -65,7 +66,7 @@ export default class App extends React.PureComponent {
     } else if (this.state.regCheck === 'notRegistered') {
       return (
         <Provider store={store}>
-          <Register activateSwitchScreen={() => {
+          <StepRegister activateSwitchScreen={() => {
               this.setState({ regCheck: 'registered' });
 
             }

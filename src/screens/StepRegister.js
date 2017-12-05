@@ -6,37 +6,22 @@ import {
     Text,
     ScrollView,
     Button,
-    Modal
+    Modal,
+    KeyboardAvoidingView,
+    AsyncStorage,
 } from 'react-native';
 import ViewPager from 'react-native-viewpager';
 import StepIndicator from 'react-native-step-indicator';
-const PAGES = ['STEP 1', 'STEP 2', 'STEP 3'];
-// const PAGES = [1,2,3]
+const PAGES = ['STEP 1', 'STEP 2', 'STEP 3', 'STEP 4', 'STEP 5'];
+import { connect } from 'react-redux';
 
+// components
 import PersonalInfo from '../components/PersonalInfo';
 import AddictionLevel from '../components/AddictionLevel';
 import Interests from '../components/Interests';
 
-
-const firstIndicatorStyles = {
-    stepIndicatorSize: 30,
-    currentStepIndicatorSize: 40,
-    separatorStrokeWidth: 3,
-    currentStepStrokeWidth: 5,
-    separatorFinishedColor: '#4aae4f',
-    separatorUnFinishedColor: '#a4d4a5',
-    stepIndicatorFinishedColor: '#4aae4f',
-    stepIndicatorUnFinishedColor: '#a4d4a5',
-    stepIndicatorCurrentColor: '#ffffff',
-    stepIndicatorLabelFontSize: 15,
-    currentStepIndicatorLabelFontSize: 15,
-    stepIndicatorLabelCurrentColor: '#000000',
-    stepIndicatorLabelFinishedColor: '#ffffff',
-    stepIndicatorLabelUnFinishedColor: 'rgba(255,255,255,0.5)',
-    labelColor: '#666666',
-    labelSize: 12,
-    currentStepLabelColor: '#4aae4f'
-}
+// actions
+import registerActions from '../redux/actions/register';
 
 const secondIndicatorStyles = {
     stepIndicatorSize: 25,
@@ -62,31 +47,7 @@ const secondIndicatorStyles = {
     currentStepLabelColor: '#fe7013'
 }
 
-const thirdIndicatorStyles = {
-    stepIndicatorSize: 25,
-    currentStepIndicatorSize: 30,
-    separatorStrokeWidth: 2,
-    currentStepStrokeWidth: 3,
-    stepStrokeCurrentColor: '#7eaec4',
-    stepStrokeWidth: 3,
-    stepStrokeFinishedColor: '#7eaec4',
-    stepStrokeUnFinishedColor: '#dedede',
-    separatorFinishedColor: '#7eaec4',
-    separatorUnFinishedColor: '#dedede',
-    stepIndicatorFinishedColor: '#7eaec4',
-    stepIndicatorUnFinishedColor: '#ffffff',
-    stepIndicatorCurrentColor: '#ffffff',
-    stepIndicatorLabelFontSize: 0,
-    currentStepIndicatorLabelFontSize: 0,
-    stepIndicatorLabelCurrentColor: 'transparent',
-    stepIndicatorLabelFinishedColor: 'transparent',
-    stepIndicatorLabelUnFinishedColor: 'transparent',
-    labelColor: '#999999',
-    labelSize: 13,
-    currentStepLabelColor: '#7eaec4'
-}
-
-export default class StepRegister extends Component {
+class StepRegister extends Component {
 
     constructor(props) {
         super(props);
@@ -96,28 +57,39 @@ export default class StepRegister extends Component {
         this.state = {
             dataSource: dataSource.cloneWithPages(PAGES),
             currentPage: 0,
-            color: 'darkgray'
+            buttonProfileFlag: false
         }
+        this.buttonRender = this.buttonRender.bind(this);
+        this.onFinishPress = this.onFinishPress.bind(this);
     }
 
-    submitActions() {
+    onFinishPress () {
         // const navigate = this.props.navigation.navigate
         // console.log(this.props.navigation.navigate)
-        alert('submit Profile')
+        // alert('submit Profile')
+        (async () => {
+          try {
+            await this.props.submitData(this.props.registerData);
+            await AsyncStorage.setItem('averagePerDay', (this.props.registerData.cigarPerDay).toString())
+            await AsyncStorage.setItem('cigarPerDay', '0')
+            console.log(this.props.allState);
+            this.props.activateSwitchScreen();
+          } catch (e) {
+            alert(e)
+          }
+        })()
     }
 
     render() {
         return (
             <View style={styles.container}>
-                <View style={styles.judul}>
-                    <Text>PLEASE COMPLETE YOUR REGISTRATION</Text>
-                </View>
+
                 <View style={styles.stepIndicator}>
                     <StepIndicator
-                        stepCount={3}
+                        stepCount={5}
                         customStyles={secondIndicatorStyles}
                         currentPosition={this.state.currentPage}
-                        labels={["Profile Info", "Addiction Level", "Interests"]} />
+                        labels={["Welcome !", "Profile Info", "Addiction Level", "Interests", "Complete Registration"]} />
                 </View>
 
                 <ViewPager
@@ -125,42 +97,97 @@ export default class StepRegister extends Component {
                     renderPage={this.renderViewPagerPage}
                     onChangePage={(page) => { this.setState({ currentPage: page }) }}
                 />
-                <Button
-                    title='PROFILE SUBMIT'
-                    onPress={this.submitActions}
-                />
+                {this.buttonRender.call(this)}
 
             </View>
         );
+    }
+
+    buttonRender() {
+        if (!this.state.buttonProfileFlag){
+            return (
+                <Button
+                    title='PROFILE SUBMIT'
+                    color='#fe7013'
+
+                    onPress={this.onFinishPress}
+                />
+            )
+        } else {
+            return(
+                <Button
+                    title='PROFILE SUBMIT'
+                    color='#fe7013'
+                    onPress={this.onFinishPress}
+                />
+            )
+        }
     }
 
     renderViewPagerPage(data) {
         if (data === 'STEP 1') {
             return (<ScrollView style={{ flex: 1 }}>
                 <View style={styles.page}>
-                    <Text>{data}</Text>
-                    <PersonalInfo />
+                    <View style={{paddingTop:50, alignItems:'center'}}>
+                        <Text style={{fontSize:28}}>Hi, Welcome To iQuit !</Text>
+                        <Text syle={{fontSize:28}}> We're gonna help you decrease your smoke addition ! </Text>
+                        {/* <Text syle={{fontSize:42}}> Please Swipe, and Complete REGISTRATION</Text> */}
+                    </View>
                 </View>
             </ScrollView>)
         } else if (data === 'STEP 2') {
             return (<ScrollView style={{ flex: 1 }}>
-                <View style={styles.page}>
-                    <Text>{data}</Text>
-                    <AddictionLevel />
+                <View style={{paddingTop:50, flex:1, justifyContent:'center', alignItems:'center'}}>
+                    <KeyboardAvoidingView
+                        style={{}}
+                        behavior="position"
+                    >
+                        <View style={{}}>
+                            <Text style={styles.headerStyling}>
+                                We need Your Personal Information
+                            </Text>
+                        </View>
+                        <PersonalInfo />
+                        <View style={{ height: 30 }} />
+                    </KeyboardAvoidingView>
                 </View>
             </ScrollView>)
         } else if (data === 'STEP 3') {
             return (<ScrollView style={{ flex: 1 }}>
                 <View style={styles.page}>
-                    <Text>{data}</Text>
-                    <Interests />
+                    <KeyboardAvoidingView
+                        style={{}}
+                        behavior="position"
+                    >
+                        <View style={{}}>
+                            <Text style={styles.headerStyling}>
+                                Tell us about your smoke addiciton:
+                            </Text>
+                        </View>
+                        <AddictionLevel/>
+                        <View style={{ height: 30 }} />
+                    </KeyboardAvoidingView>
+                </View>
+            </ScrollView>)
+        } else if (data === 'STEP 4') {
+            return (<ScrollView style={{ flex: 1 }}>
+                <View style={styles.page}>
+                    {/* <Text>{data}</Text> */}
+                    <Text>Pick Your Kind Of Interest: </Text>
+                    <View style={{ paddingTop: 70, alignItems: 'center' }}>
+                        <Interests />
+                    </View>
+                </View>
+            </ScrollView>)
+        } else if (data === 'STEP 5') {
+            return (<ScrollView style={{ flex: 1 }}>
+                <View style={{paddingTop:2, flex:1, justifyContent: 'center', alignItems:'center'}}>
+                <Text>{data}</Text>
                 </View>
             </ScrollView>)
         }
     }
-
 }
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -170,6 +197,7 @@ const styles = StyleSheet.create({
         marginVertical: 50,
     },
     page: {
+        paddingTop: 50,
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
@@ -177,5 +205,34 @@ const styles = StyleSheet.create({
     judul: {
         alignItems: 'center',
         paddingTop: 50
+    },
+    headerStyling: {
+        fontFamily: "sans-serif-light",
+        fontSize: 20,
     }
 });
+
+function mapStateToProps(state, props) {
+  return {
+    registerData: state.register,
+    allState: state,
+  }
+}
+
+function mapDispatchToProps(dispatch, props) {
+  return {
+    submitData: (registerData) => {
+      const data = {
+        name: registerData.name,
+        username: registerData.name,
+        age: registerData.age,
+        pricePerPack: registerData.pricePerPack,
+        interests: registerData.interests.map((item) => { return item.name })
+
+      }
+      dispatch(registerActions.submitData(data))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(StepRegister)
