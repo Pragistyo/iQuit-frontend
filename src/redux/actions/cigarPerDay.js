@@ -16,7 +16,7 @@ function consumeOneCigar(currentCigar) {
       const sumCigar = currentCigar+1;
       await AsyncStorage.setItem('cigarConsumed', (sumCigar).toString());
       dispatch(setCigarConsumed(sumCigar));
-      dispatch(healthStatusActions.fetchData(sum))
+      dispatch(healthStatusActions.fetchData(sumCigar))
     } catch (e) {
       alert(e)
     } finally {

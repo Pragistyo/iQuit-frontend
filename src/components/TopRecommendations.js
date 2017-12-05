@@ -11,19 +11,22 @@ import {
   Card,
 } from 'react-native-elements';
 
+import interestToCatId from '../helpers/interestToCatId';
 import recommendationsActions from '../redux/actions/recommendationItems';
 
 class TopRecommendations extends Component {
   constructor(props) {
     super(props)
+    alert(JSON.stringify(this.props))
     this.props.setRecommendationsState()
-    this.props.getRecommendationsByCategory('3944', 8000000)
+    const catId = interestToCatId(this.props.interests[0]);
+    this.props.getRecommendationsByCategory(catId, this.props.moneySaved)
   }
 
   render() {
     return (
       <Card
-        title="Recommendation item for you to have"
+        title={"Recommendation item for you to have"+JSON.stringify(this.props.allState)}
       >
         <List containerStyle={{ marginBottom: 20 }}>
           {this.props.recommendations.length > 0 &&
@@ -67,6 +70,9 @@ class TopRecommendations extends Component {
 const mapStateToProps = (state, props) => {
   return {
     recommendations: state.recommendationItems,
+    interests: state.user.interests,
+    moneySaved: state.user.moneySaved,
+    allState: state,
   }
 }
 

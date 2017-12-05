@@ -12,10 +12,12 @@ import { connect } from 'react-redux';
 
 import store from '../redux/store';
 import cigarPerDayAction from '../redux/actions/cigarPerDay';
+import userActions from '../redux/actions/user';
 
 class Smoking extends Component {
   constructor(props) {
     super(props);
+    this.props.fetchUserData
   }
 
   render() {
@@ -50,6 +52,9 @@ function mapDispatchToProps(dispatch, props) {
   return {
     consumeOneCigar: (curr) => {
       dispatch(cigarPerDayAction.consumeOneCigar(parseInt(curr)))
+    },
+    fetchUserData: (id) => {
+      dispatch(userActions.fetchUserData())
     }
   };
 }
