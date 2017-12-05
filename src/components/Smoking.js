@@ -17,7 +17,7 @@ import userActions from '../redux/actions/user';
 class Smoking extends Component {
   constructor(props) {
     super(props);
-    this.props.fetchUserData
+    this.props.fetchUserData()
   }
 
   render() {
@@ -27,7 +27,7 @@ class Smoking extends Component {
         backgroundColor='#e3871fff'
         containerViewStyle={styles.styling}
         onPress={async () => {
-          this.props.consumeOneCigar(this.props.currentCigar)
+          this.props.consumeOneCigar(this.props.currentCigar, this.props.user)
         }}
       />
     )
@@ -45,15 +45,16 @@ function mapStateToProps(state, props) {
   console.log(JSON.stringify(state))
   return {
     currentCigar: state.cigarPerDay,
+    user: state.user,
   };
 }
 
 function mapDispatchToProps(dispatch, props) {
   return {
-    consumeOneCigar: (curr) => {
-      dispatch(cigarPerDayAction.consumeOneCigar(parseInt(curr)))
+    consumeOneCigar: (curr, user) => {
+      dispatch(cigarPerDayAction.consumeOneCigar(parseInt(curr), user))
     },
-    fetchUserData: (id) => {
+    fetchUserData: () => {
       dispatch(userActions.fetchUserData())
     }
   };

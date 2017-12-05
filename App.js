@@ -15,7 +15,7 @@ import Register from './src/screens/Register';
 import SplashScreen from './src/screens/SplashScreen';
 // import DiscussionBoard from './src/screens/DiscussionBoard';
 
-export default class App extends React.Component {
+export default class App extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -62,7 +62,11 @@ export default class App extends React.Component {
     } else if (this.state.regCheck === 'notRegistered') {
       return (
         <Provider store={store}>
-          <Register activateSwitchScreen={() => {this.setState({activated: true})}}/>
+          <Register activateSwitchScreen={() => {
+              this.setState({ regCheck: 'registered' });
+              alert('fuck the pol;ice')
+            }
+          }/>
         </Provider>
       )
     }

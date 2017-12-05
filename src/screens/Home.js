@@ -4,6 +4,9 @@ import {
   ScrollView,
   Text,
   StyleSheet,
+
+  AsyncStorage,
+  Button,
 } from 'react-native';
 
 import Smoking from '../components/Smoking';
@@ -23,6 +26,14 @@ class Home extends Component {
   render() {
     return (
       <ScrollView>
+        <Button
+        title="reset"
+        onPress={async () => {
+          await AsyncStorage.removeItem('userId');
+          await AsyncStorage.removeItem('cigarConsumed');
+
+        }}
+        />
         <View style={styles.upperScreenMargin}/>
         <ShowLogo style={{ height: 100 }}/>
         <View style={ styles.upperComponentGrouping }>

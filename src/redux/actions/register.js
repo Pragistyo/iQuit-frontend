@@ -63,7 +63,8 @@ const submitData = (registerData) => {
       age: registerData.age,
       price_per_pack: registerData.pricePerPack,
       interests: registerData.interests,
-      price_per_cigarette: 300,
+      price_per_cigarette: registerData.pricePerPack/12,
+      money_saved: registerData.pricePerPack
     }
     try {
       // alert('registerData raw'+ JSON.stringify(registerData))
@@ -72,6 +73,7 @@ const submitData = (registerData) => {
       dispatch(userData(data));
       // alert(JSON.stringify(data))
       await AsyncStorage.setItem('userId', data._id)
+      await AsyncStorage.setItem('cigarPerDay', '0')
     } catch (e) {
       console.log('---------------000000000000000================-----------');
       console.log(e);

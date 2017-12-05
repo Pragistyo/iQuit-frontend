@@ -20,6 +20,7 @@ class TopRecommendations extends Component {
     alert(JSON.stringify(this.props))
     this.props.setRecommendationsState()
     const catId = interestToCatId(this.props.interests[0]);
+    alert(catId)
     this.props.getRecommendationsByCategory(catId, this.props.moneySaved)
   }
 

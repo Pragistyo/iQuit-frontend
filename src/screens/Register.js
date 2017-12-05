@@ -37,7 +37,8 @@ class Register extends Component {
     (async () => {
       try {
         this.props.submitData(this.props.registerData);
-        await AsyncStorage.setItem('cigarPerDay', (this.props.registerData.cigarPerDay).toString())
+        await AsyncStorage.setItem('averagePerDay', (this.props.registerData.cigarPerDay).toString())
+        await AsyncStorage.setItem('cigarPerDay', '0')
         this.props.activateSwitchScreen();
       } catch (e) {
         alert(e)
