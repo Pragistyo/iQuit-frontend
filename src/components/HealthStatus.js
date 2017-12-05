@@ -3,6 +3,7 @@ import {
   View,
   Text,
   StyleSheet,
+  Dimensions
 } from 'react-native';
 import {
   Card,
@@ -21,7 +22,7 @@ class HealthStatus extends Component {
   render() {
     return (
       <Card
-        containerStyle={{ width: 210 }}
+        containerStyle={{ width: Dimensions.get('window').width }}
       >
         <View style={styles.oneLiner}>
           <Icon

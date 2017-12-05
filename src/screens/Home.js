@@ -21,17 +21,20 @@ class Home extends Component {
 
   render() {
     return (
+      <View>
+      <View>
+        <Smoking style={{ position: 'absolute' }}/>
+      </View>
       <ScrollView>
         <View style={styles.upperScreenMargin}/>
-        <ShowLogo style={{ height: 100 }}/>
         <View style={ styles.upperComponentGrouping }>
           <HealthStatus style={{ height: 100 }}/>
-          <Smoking style={{ height: 100 }}/>
         </View>
         <MoneySaved style={{ height: 100 }}/>
         <WantToBuy style={{ height: 100 }}/>
         <TopRecommendations style={{ height: 100 }}/>
       </ScrollView>
+      </View>
     );
   }
 }
