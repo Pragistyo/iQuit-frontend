@@ -20,7 +20,7 @@ class MoneySaved extends Component {
       containerStyle={{ width: Dimensions.get('window').width }}
       >
         <View>
-          <Text>
+          <Text style={{ fontWeight: 'bold' }}>
             You've saved Rp. {this.props.moneySaved}
           </Text>
         </View>

@@ -26,6 +26,7 @@ export default class App extends React.Component {
 
   componentDidMount() {
     (async () => {
+      AsyncStorage.removeItem('userId')
       const userId = await AsyncStorage.getItem('userId');
       store.dispatch(cigarPerDayActions.getCigarFromStorage())
       if(userId) {
@@ -52,7 +53,9 @@ export default class App extends React.Component {
       return (
         <Provider store={store}>
 
-          <ScrollableTabView>
+          <ScrollableTabView
+          tabBarPosition= 'bottom'
+          tabBarActiveTextColor= '#fe7013'>
             <Home userData={this.state.userData} tabLabel="Dashboard"/>
             <DiscussionBoard tabLabel="Discussion Board"/>
           </ScrollableTabView>
