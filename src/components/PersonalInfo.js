@@ -45,7 +45,7 @@ class PersonalInfo extends Component {
           <Text
           style={styles.headerStyling}
           >
-            Personal Info {this.props.name}
+            Personal Info
           </Text>
         </View>
         <Divider style={{ backgroundColor: '#9E9E9E' }} />

@@ -12,6 +12,7 @@ import {
 } from 'react-native-elements';
 
 import wishlistActions from '../redux/actions/wishlist';
+import thousandSeparator from '../helpers/thousandSeparator';
 
 class WantToBuy extends Component {
   constructor(props) {
@@ -21,32 +22,59 @@ class WantToBuy extends Component {
   }
 
   render() {
+    // alert(this.props.wishlists.length)
     return (
       <Card
         title="I want to spend my money to buy this instead."
-        wrapperStyle={{ height: 150 }}
+        wrapperStyle={{ flex: 1 }}
       >
         {this.props.wishlists.length > 0 &&
-        (<View style={styles.imageTitlePriceGrouping}>
-          <Image
-            style={ styles.imageInCard }
-            source={{ uri: this.props.wishlists[0].thumbnail }}
-            resizeMode="contain"
-          />
-          <View
-            style={ styles.containerDetail }
-          >
-            <Text style={styles.detailStyling}>
-              {this.props.wishlists[0].name}
-            </Text>
-            <Text style={styles.detailStyling}>
-              Rp. {this.props.wishlists[0].price}
-            </Text>
-            <Text style={styles.detailStyling}>
-            Tap for details..
-            </Text>
-          </View>
-        </View>)
+          this.props.wishlists.map((item) => {
+            console.log(item);
+            return (<View style={styles.imageTitlePriceGrouping}>
+              <Image
+                style={ styles.imageInCard }
+                source={{ uri: this.props.wishlists[0].thumbnail }}
+                resizeMode="contain"
+              />
+              <View
+                style={ styles.containerDetail }
+              >
+                <Text style={styles.detailStyling}>
+                  {this.props.wishlists[0].name}
+                </Text>
+                <Text style={styles.detailStyling}>
+                  Rp. {thousandSeparator(this.props.wishlists[0].price)}
+                </Text>
+                <Text style={styles.detailStyling}>
+                  Could buy at:  {this.props.wishlists[0].could_buy.slice(0, 10)}
+                </Text>
+                <Text style={styles.detailStyling}>
+                Tap for details..
+                </Text>
+              </View>
+            </View>)
+          })
+        // (<View style={styles.imageTitlePriceGrouping}>
+        //   <Image
+        //     style={ styles.imageInCard }
+        //     source={{ uri: this.props.wishlists[0].thumbnail }}
+        //     resizeMode="contain"
+        //   />
+        //   <View
+        //     style={ styles.containerDetail }
+        //   >
+        //     <Text style={styles.detailStyling}>
+        //       {this.props.wishlists[0].name}
+        //     </Text>
+        //     <Text style={styles.detailStyling}>
+        //       Rp. {thousandSeparator(this.props.wishlists[0].price)}
+        //     </Text>
+        //     <Text style={styles.detailStyling}>
+        //     Tap for details..
+        //     </Text>
+        //   </View>
+        // </View>)
         }
       </Card>
     );
@@ -65,8 +93,7 @@ const styles = StyleSheet.create({
   },
 
   detailStyling: {
-    fontFamily: 'Roboto',
-    fontWeight: '600'
+    fontFamily: 'sans-serif-thin',
   },
 
   containerDetail: {

@@ -14,6 +14,9 @@ import store from '../redux/store';
 import cigarPerDayAction from '../redux/actions/cigarPerDay';
 import userActions from '../redux/actions/user';
 
+import cigareteConsumptionActions from '../redux/actions/cigareteConsumption';
+import healthStatNewActions from '../redux/actions/healthStatNew';
+
 class Smoking extends Component {
   constructor(props) {
     super(props);
@@ -23,11 +26,12 @@ class Smoking extends Component {
   render() {
     return (
       <Button
-        title={`Press when you smoke. ${this.props.currentCigar}`}
+        title={`Press when you smoke.`}
         backgroundColor='#e3871fff'
         containerViewStyle={styles.styling}
         onPress={async () => {
-          this.props.consumeOneCigar(this.props.currentCigar, this.props.user)
+          this.props.addConsumption(this.props.cigareteConsumption)
+          // this.props.consumeOneCigar(this.props.currentCigar, this.props.user)
         }}
       />
     )
@@ -42,10 +46,11 @@ const styles = StyleSheet.create({
 })
 
 function mapStateToProps(state, props) {
-  console.log(JSON.stringify(state))
+  // console.log(JSON.stringify(state))
   return {
     currentCigar: state.cigarPerDay,
     user: state.user,
+    cigareteConsumption: state.cigareteConsumption,
   };
 }
 
@@ -56,6 +61,10 @@ function mapDispatchToProps(dispatch, props) {
     },
     fetchUserData: () => {
       dispatch(userActions.fetchUserData())
+    },
+    addConsumption: (cigareteConsumption) => {
+      dispatch(cigareteConsumptionActions.consumeOne());
+      dispatch(healthStatNewActions.fetchHealthStat(cigareteConsumption+1));
     }
   };
 }

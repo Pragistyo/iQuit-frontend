@@ -8,6 +8,9 @@ import userReducer from './user';
 import wantToBuyReducer from './wantToBuy';
 import cigarPerDayReducer from './cigarPerDay';
 
+import cigareteConsumptionReducer from './cigareteConsumption';
+import healthStatNewReducer from './healthStatNew';
+
 export default combineReducers({
   healthStatus: healthStatusReducer,
   wishlist: wislistReducer,
@@ -16,5 +19,7 @@ export default combineReducers({
   user: userReducer,
   wantToBuy: wantToBuyReducer,
   cigarPerDay: cigarPerDayReducer,
+  cigareteConsumption: cigareteConsumptionReducer,
+  healthStatNew: healthStatNewReducer,
   }
 )

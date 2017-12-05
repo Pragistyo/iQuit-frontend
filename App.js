@@ -64,7 +64,7 @@ export default class App extends React.PureComponent {
         <Provider store={store}>
           <Register activateSwitchScreen={() => {
               this.setState({ regCheck: 'registered' });
-              alert('fuck the pol;ice')
+              
             }
           }/>
         </Provider>

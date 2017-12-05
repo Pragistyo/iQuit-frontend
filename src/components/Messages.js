@@ -28,9 +28,18 @@ class Messages extends Component {
       for (var index in snapshot.val()) {
         if (snapshot.val().hasOwnProperty(index)) {
           // messages.push(snapshot.val()[index])
-          messages.push(Object.assign({}, snapshot.val()[index], { key: index }));
+          messages.push(Object.assign({}, snapshot.val()[index], {
+            key: index,
+            utcValue: new Date(snapshot.val()[index].created).toUTCString(),
+          }));
         }
       }
+      // messages.map((item) => {
+      //   console.log(new Date(item.created.toUTCString()));
+      // })
+      messages.sort((a, b) => {
+        return a.utcValue - b.utcValue;
+      })
       this.setState({
         messages
       })
@@ -48,7 +57,9 @@ class Messages extends Component {
       renderItem={({ item }) => (
         <View style={styles.margins}>
           <Text style={styles.userName}>
-            {`${item.username}`}
+            {`${item.username}`}<Text style={styles.postDate}>
+              {item.created.slice(0, 10)}
+            </Text>
           </Text>
           <Text style={styles.content}>
             {`${item.message}`}
@@ -72,6 +83,10 @@ const styles = StyleSheet.create({
   userName: {
     fontSize: 20,
     color: '#00897b',
+  },
+
+  postDate: {
+    fontSize: 10,
   },
 
   content: {

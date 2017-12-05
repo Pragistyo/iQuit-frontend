@@ -11,11 +11,13 @@ import {
 import { connect } from 'react-redux';
 
 import healthStatsAction from '../redux/actions/healthStatus';
+import cigareteConsumptionActions from '../redux/actions/cigareteConsumption';
 
 class HealthStatus extends Component {
   constructor(props) {
     super(props);
-    this.props.fetchData(12);
+    this.props.fetchData(this.props.cigareteConsumption);
+    // alert(this.props.cigareteConsumption)
   }
 
   render() {
@@ -32,7 +34,7 @@ class HealthStatus extends Component {
             {'Age Reduction: '}
           </Text>
           <Text>
-            {this.props.ageReduction} min
+            {this.props.newState.ageReduction} min
           </Text>
         </View>
 
@@ -45,7 +47,7 @@ class HealthStatus extends Component {
             {'Nicotine Amount: '}
           </Text>
           <Text>
-            {this.props.nicotineAmount} mg
+            {this.props.newState.nicotineAmount} mg
           </Text>
         </View>
 
@@ -58,7 +60,7 @@ class HealthStatus extends Component {
             {'Tar Amount: '}
           </Text>
           <Text>
-            {this.props.tarAmount} mg
+            {this.props.newState.tarAmount} mg
           </Text>
         </View>
 
@@ -71,7 +73,7 @@ class HealthStatus extends Component {
             {'Cancer Chance Increased: '}
           </Text>
           <Text>
-            {this.props.increasedCancerChance.toString()}
+            {this.props.newState.increasedCancerChance}
           </Text>
         </View>
 
@@ -96,7 +98,10 @@ const mapStateToProps = (state, props) => {
     nicotineAmount: state.healthStatus.nicotineAmount,
     tarAmount: state.healthStatus.tarAmount,
     increasedCancerChance: state.healthStatus.increasedCancerChance,
+    cigarPerDay: state.cigarPerDay,
     allState: state,
+    cigareteConsumption: state.cigareteConsumption,
+    newState: state.healthStatNew,
   }
 }
 
@@ -112,6 +117,9 @@ const mapDispatchToProps = (dispatch, props) => {
           tarAmount: 1,
           increasedCancerChance: false,
         }))
+    },
+    smokeOne: () => {
+      dispatch(cigareteConsumptionActions.consumeOne());
     }
   }
 }

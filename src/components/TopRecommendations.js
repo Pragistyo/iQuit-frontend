@@ -13,31 +13,41 @@ import {
 
 import interestToCatId from '../helpers/interestToCatId';
 import recommendationsActions from '../redux/actions/recommendationItems';
+import thousandSeperator from '../helpers/thousandSeparator';
 
 class TopRecommendations extends Component {
   constructor(props) {
     super(props)
-    alert(JSON.stringify(this.props))
+
     this.props.setRecommendationsState()
-    const catId = interestToCatId(this.props.interests[0]);
-    alert(catId)
-    this.props.getRecommendationsByCategory(catId, this.props.moneySaved)
+
+    this.fetchRecommendation = this.fetchRecommendation.bind(this)
+    this.fetchRecommendation()
+  }
+
+  fetchRecommendation() {
+    const randomCategoryFromUser = Math.ceil( Math.random() * this.props.interests.length-1 )
+    const catId = interestToCatId(this.props.interests[randomCategoryFromUser]);
+    const cigareteCostForThreeMonths = this.props.pricePerPack * 120
+    console.log('========> cigarete 4 mon',cigareteCostForThreeMonths)
+    this.props.getRecommendationsByCategory(catId, cigareteCostForThreeMonths)
   }
 
   render() {
+
     return (
       <Card
-        title={"Recommendation item for you to have"+JSON.stringify(this.props.allState)}
+        title={"This is stuff that you can buy from collecting 3 months worth of cigarette"}
       >
         <List containerStyle={{ marginBottom: 20 }}>
-          {this.props.recommendations.length > 0 &&
+          {this.props.recommendations && this.props.recommendations.hasOwnProperty('length') && this.props.recommendations.length > 0 &&
           this.props.recommendations.map((recommendation) => {
             return (
               <ListItem
                 key={ recommendation.thumbnail }
                 avatar={ { uri: recommendation.thumbnail } }
                 title={ recommendation.name }
-                subtitle={ `Rp. ${recommendation.price}` }
+                subtitle={ `Rp. ${thousandSeperator(recommendation.price)}` }
               />
             );
           })}
@@ -59,10 +69,11 @@ class TopRecommendations extends Component {
             subtitle="Rp. 200.000"
           />
         </List>
-        <Button
-          title="More recommendation"
-          backgroundColor="#e3871fff"
-        />
+        {// <Button
+        //   title="More recommendation"
+        //   backgroundColor="#e3871fff"
+        // />
+        }
       </Card>
     );
   }
@@ -73,6 +84,7 @@ const mapStateToProps = (state, props) => {
     recommendations: state.recommendationItems,
     interests: state.user.interests,
     moneySaved: state.user.moneySaved,
+    pricePerPack: state.user.pricePerPack,
     allState: state,
   }
 }

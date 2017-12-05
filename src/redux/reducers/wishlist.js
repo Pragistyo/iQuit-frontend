@@ -7,7 +7,7 @@ const wishlist = (state=[], action) => {
     case 'SET_WISHLIST':
       return action.state;
     case 'PUSH_WISHLIST':
-      return Object.assign({}, state, action.state);
+      return state.slice(0, state.length) + action.state;
     case 'ADD_WISHLIST':
       return state;
     case 'INIT_WISHLIST':

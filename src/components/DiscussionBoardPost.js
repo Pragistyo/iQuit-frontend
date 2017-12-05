@@ -6,6 +6,7 @@ import {
 import {
   FormInput,
 } from 'react-native-elements';
+import { connect } from 'react-redux';
 
 import db from '../helpers/fire-database';
 
@@ -20,7 +21,7 @@ class DiscussionBoardPost extends Component {
 
   sendMessage() {
     db.ref(`/messages/${Math.floor(Math.random()*100000000)}`).set({
-      username: 'cuk',
+      username: this.props.username,
       message: this.state.message,
       created: Date(),
     })
@@ -40,4 +41,11 @@ class DiscussionBoardPost extends Component {
   }
 }
 
-export default DiscussionBoardPost;
+function mapStateToProps(state, props) {
+  return {
+    username: state.user.name,
+  }
+}
+
+// export default DiscussionBoardPost;
+export default connect(mapStateToProps, null)(DiscussionBoardPost)

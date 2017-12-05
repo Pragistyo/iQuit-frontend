@@ -40,7 +40,7 @@ class Home extends Component {
           <HealthStatus style={{ height: 100 }}/>
           <Smoking style={{ height: 100 }}/>
         </View>
-        <MoneySaved style={{ height: 100 }}/>
+        
         <WantToBuy style={{ height: 100 }}/>
         <InputWantToBuy/>
         <TopRecommendations style={{ height: 100 }}/>

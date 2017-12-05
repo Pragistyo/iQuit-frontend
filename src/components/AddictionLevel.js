@@ -40,7 +40,7 @@ class AddictionLevel extends Component {
       const changes = {};
       changes[state] = e.target.value
       this.setState(changes)
-      alert(JSON.stringify(this.state))
+      // alert(JSON.stringify(this.state))
     }
   }
 
