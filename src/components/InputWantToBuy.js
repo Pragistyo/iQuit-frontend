@@ -67,7 +67,7 @@ class InputWantToBuy extends Component {
                     <Button
                         style={{ paddingLeft:50,alignItems: 'center', width: 20}}
                         color="#fe7013"
-                        title="Add WishList"
+                        title="Add Own WishList"
                         onPress={() => { 
                             this.submitInputWannaBuy();
                             this.props.toggleWantToBuy();

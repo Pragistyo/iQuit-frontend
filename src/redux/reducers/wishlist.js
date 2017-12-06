@@ -7,9 +7,13 @@ const wishlist = (state=[], action) => {
     case 'SET_WISHLIST':
       return action.state;
     case 'PUSH_WISHLIST':
-      alert(JSON.stringify(action.state) + ' ======== REDUCER')
-      // return state.slice(0, state.length) + action.state;
-      return state
+      // alert(JSON.stringify(action.state) + ' ======== REDUCER')
+      // alert(JSON.stringify([...state, action.state]) + ' ======== REDUCER AWAL')
+      // return (state.slice(0, state.length) + action.state);
+      let newState = state.concat(action.state)
+      // alert(JSON.stringify(newState))
+      return newState
+      // return state
     case 'ADD_WISHLIST':
       return state;
     case 'INIT_WISHLIST':

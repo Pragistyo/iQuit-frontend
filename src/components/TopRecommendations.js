@@ -16,6 +16,7 @@ import {
 import interestToCatId from '../helpers/interestToCatId';
 import recommendationsActions from '../redux/actions/recommendationItems';
 import thousandSeperator from '../helpers/thousandSeparator';
+import wishlistActions from '../redux/actions/wishlist';
 
 class TopRecommendations extends Component {
   constructor(props) {
@@ -43,10 +44,9 @@ class TopRecommendations extends Component {
     }
   }
 
-  addToWhishList () {
-    // alert()
-    this.props.setRecommendationsState()
-
+  addToWhishList (input) {
+    // alert(JSON.stringify(input))
+    this.props.submitWishlist(this.props.userId, input.name, parseInt(input.price), input.thumbnail)
   }
 
   render() {
@@ -60,7 +60,7 @@ class TopRecommendations extends Component {
           this.props.recommendations.map((recommendation) => {
             return (
               <TouchableOpacity
-                onPress={this.addToWhishList}
+                onPress={this.addToWhishList.bind(this, { name: recommendation.name, price: recommendation.price, thumbnail: recommendation.thumbnail})}
               >
                 <ListItem
                   key={ recommendation.thumbnail }
@@ -84,6 +84,7 @@ class TopRecommendations extends Component {
 
 const mapStateToProps = (state, props) => {
   return {
+    userId: state.user.userId,
     recommendations: state.recommendationItems,
     interests: state.user.interests,
     moneySaved: state.user.moneySaved,
@@ -103,6 +104,15 @@ const mapDispatchToProps = (dispatch, props) => {
         price,
       }
       dispatch(recommendationsActions.getRecommendationsByCategory(payload))
+    },
+    submitWishlist: (userId, name, price, thumbnail) => {
+      const dataSent = {
+        name: name,
+        user_id: userId,
+        price: price,
+        thumbnail: thumbnail,
+      }
+      dispatch(wishlistActions.addWishlist(dataSent))
     }
   }
 }

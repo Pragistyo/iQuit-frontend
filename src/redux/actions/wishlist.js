@@ -7,6 +7,9 @@ const addWishlist = (payload) => {
     price: payload.price,
     thumbnail: payload.thumbnail,
   }
+  // alert(JSON.stringify(dataSent)+ ' ========== blablabla')
+  // return {
+  // }
   return async (dispatch) => {
     const { data } = await axios.post('http://35.198.215.58/wishlist', dataSent);
     const wishlistAdded = data;
