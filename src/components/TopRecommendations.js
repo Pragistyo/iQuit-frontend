@@ -50,16 +50,17 @@ class TopRecommendations extends Component {
   }
 
   render() {
-
+    console.log('bababbabab ====== ahhahahahah ======= 13')
     return (
       <Card
         title={"This is stuff that you can buy from collecting 3 months worth of cigarette"}
       >
         <List containerStyle={{ marginBottom: 20 }}>
           {this.props.recommendations && this.props.recommendations.hasOwnProperty('length') && this.props.recommendations.length > 0 &&
-          this.props.recommendations.map((recommendation) => {
+          this.props.recommendations.map((recommendation, index) => {
             return (
               <TouchableOpacity
+              key={index}
                 onPress={this.addToWhishList.bind(this, { name: recommendation.name, price: recommendation.price, thumbnail: recommendation.thumbnail})}
               >
                 <ListItem

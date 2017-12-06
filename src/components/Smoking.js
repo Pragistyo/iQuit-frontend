@@ -39,6 +39,7 @@ class Smoking extends Component {
   //   )
   // }
   render() {
+    console.log('bababbabab ====== ahhahahahah ======= 12')
     return (
       <TouchableHighlight
       style={styles.circle}

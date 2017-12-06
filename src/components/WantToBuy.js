@@ -37,6 +37,7 @@ class WantToBuy extends Component {
   }
 
   render() {
+    console.log('bababbabab ====== ahhahahahah ======= 14')
     return (
       <Card
         title="I want to spend my money to buy this instead."
@@ -62,6 +63,7 @@ class WantToBuy extends Component {
                 </Text>
                 <Text style={styles.detailStyling}>
                   {/* Could buy at:  {this.props.wishlists[index].could_buy.slice(index, 10)} */}
+                  {/* {this.props.wishlists[index].could_buy} */}
                   Could buy at:  {new Date(this.props.wishlists[index].could_buy).toLocaleDateString()}
                 </Text>
                 <Text style={styles.detailStyling}>
@@ -77,7 +79,7 @@ class WantToBuy extends Component {
           <View style={{ flex: 1 }}>
             <ScrollView>
               <View style={{ alignItems: 'center' }}>
-                <Text style={{ fontSize: 20, marginBottom: 10 }}>Input Your Wish Item:</Text>
+                <Text style={{ fontSize: 20, marginBottom: 10 }}>Input Your Wishlist:</Text>
               </View>
               <InputWannaBuy toggleWantToBuy={() => {
                 this.toggleModal(!this.state.modalVisible);
@@ -96,7 +98,7 @@ class WantToBuy extends Component {
         </Modal >
         <Button
           color="#fe7013"
-          title="Add Interest"
+          title="Add Wishlist"
           onPress={() => { this.toggleModal(true) }}
         />
       </Card>

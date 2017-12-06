@@ -14,6 +14,7 @@ class DiscussionBoard extends Component {
   }
 
   render() {
+    console.log('bababbabab ====== ahhahahahah ======= 3')
     return (
       <View style={styles.grouping}>
         <Icon

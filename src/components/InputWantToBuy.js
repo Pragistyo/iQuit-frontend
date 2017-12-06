@@ -28,6 +28,7 @@ class InputWantToBuy extends Component {
     }
 
     render () {
+        console.log('bababbabab ====== ahhahahahah ======= 5')
         return (
             <View style={styles.container}>
                 <View style={{ alignItems: 'center'}}>
@@ -67,7 +68,7 @@ class InputWantToBuy extends Component {
                     <Button
                         style={{ paddingLeft:50,alignItems: 'center', width: 20}}
                         color="#fe7013"
-                        title="Add Own WishList"
+                        title="Add WishList"
                         onPress={() => { 
                             this.submitInputWannaBuy();
                             this.props.toggleWantToBuy();

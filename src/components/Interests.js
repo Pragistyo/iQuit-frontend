@@ -139,7 +139,7 @@ class Interests extends Component {
   render() {
     // var data = [["C", "Java", "JavaScript"], ["Python", "Ruby"], ["Swift", "Objective-C"]];
     // var langeuageData = ["Personal", "Family", "Hobby", "Charity"]
-
+    console.log('bababbabab ====== ahhahahahah ======= 6')
     return(
       <View
       style={{ padding: 4 }}

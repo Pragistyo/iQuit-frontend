@@ -10,6 +10,7 @@ class RecommendationItems {
   }
 
   render() {
+    console.log('bababbabab ====== ahhahahahah ======= 10')
     return (
       <Card>
       </Card>

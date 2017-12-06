@@ -70,6 +70,7 @@ export class Messages extends Component {
   }
 
   render() {
+    console.log('bababbabab ====== ahhahahahah ======= 7')
     return (
       <GiftedChat
         messages={this.state.messages}

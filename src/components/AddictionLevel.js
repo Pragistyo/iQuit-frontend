@@ -39,6 +39,7 @@ class AddictionLevel extends Component {
   }
 
   render() {
+    console.log('bababbabab ====== ahhahahahah ======= 1')
     return (
       <View
       style={{padding: 4}}

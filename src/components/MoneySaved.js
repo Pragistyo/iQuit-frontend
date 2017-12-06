@@ -12,13 +12,14 @@ class MoneySaved extends Component {
   }
 
   render() {
+    console.log('bababbabab ====== ahhahahahah ======= 8')
     return (
       <Card
         containerStyle={{ width: Dimensions.get('window').width }}
       >
         <View>
           <Text style={{ fontWeight: 'bold' }}>
-            You've saved Rp. {this.props.moneySaved.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")}
+            Today, You've saved Rp. {this.props.moneySaved.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")}
           </Text>
         </View>
       </Card>

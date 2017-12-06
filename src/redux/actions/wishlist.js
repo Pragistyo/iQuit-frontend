@@ -26,6 +26,7 @@ const pushWishlistState = (payload) => {
       user_id: payload.user_id,
       price: payload.price,
       thumbnail: payload.thumbnail,
+      could_buy: payload.could_buy
     }]
   };
 }

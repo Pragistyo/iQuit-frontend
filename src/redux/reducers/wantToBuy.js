@@ -11,6 +11,7 @@ const defaultState = {
 }
 
 function reducer(state=defaultState, action) {
+  console.log('reducer')
   switch (action.type) {
     case actions.setWantToBuy().type:
       return Object.assign({}, state, action.state);
