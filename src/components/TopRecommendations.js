@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
   View,
+  Linking,
+  TouchableOpacity
 } from 'react-native';
 import {
   List,
@@ -39,6 +41,11 @@ class TopRecommendations extends Component {
     if(this.props.recommendations.length<1) {
       this.fetchRecommendation();
     }
+  }
+
+  addToWhishList () {
+    // alert()
+    this.props.setRecommendationsState()
 
   }
 
@@ -52,12 +59,16 @@ class TopRecommendations extends Component {
           {this.props.recommendations && this.props.recommendations.hasOwnProperty('length') && this.props.recommendations.length > 0 &&
           this.props.recommendations.map((recommendation) => {
             return (
-              <ListItem
-                key={ recommendation.thumbnail }
-                avatar={ { uri: recommendation.thumbnail } }
-                title={ recommendation.name }
-                subtitle={ `Rp. ${thousandSeperator(recommendation.price)}` }
-              />
+              <TouchableOpacity
+                onPress={this.addToWhishList}
+              >
+                <ListItem
+                  key={ recommendation.thumbnail }
+                  avatar={ { uri: recommendation.thumbnail } }
+                  title={ recommendation.name }
+                  subtitle={ `Rp. ${thousandSeperator(recommendation.price)}` }
+                />
+              </TouchableOpacity>
             );
           })}
         </List>
@@ -96,5 +107,4 @@ const mapDispatchToProps = (dispatch, props) => {
   }
 }
 
-// export default TopRecommendations;
 export default connect(mapStateToProps, mapDispatchToProps)(TopRecommendations);

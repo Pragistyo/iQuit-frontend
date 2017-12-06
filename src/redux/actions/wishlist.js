@@ -7,13 +7,12 @@ const addWishlist = (payload) => {
     price: payload.price,
     thumbnail: payload.thumbnail,
   }
-  alert(JSON.stringify(dataSent))
-  // return async (dispatch) => {
-    // const { data } = await axios.post('http://35.198.215.58/wishlist', dataSent);
-    // const wishlistAdded = data;
-    // console.log('payload');
-    // dispatch(pushWishlistState(wishlistAdded));
-  // }
+  return async (dispatch) => {
+    const { data } = await axios.post('http://35.198.215.58/wishlist', dataSent);
+    const wishlistAdded = data;
+    console.log('payload');
+    dispatch(pushWishlistState(wishlistAdded));
+  }
 }
 
 const pushWishlistState = (payload) => {

@@ -68,7 +68,10 @@ class InputWantToBuy extends Component {
                         style={{ paddingLeft:50,alignItems: 'center', width: 20}}
                         color="#fe7013"
                         title="Add WishList"
-                        onPress={() => { this.submitInputWannaBuy()} }
+                        onPress={() => { 
+                            this.submitInputWannaBuy();
+                            this.props.toggleWantToBuy();
+                        } }
                     />
                 </View>
             </View>
@@ -81,7 +84,7 @@ class InputWantToBuy extends Component {
     // }
 
     submitInputWannaBuy () {
-        // alert('method')
+        // alert(this.props.userId)
         let objInput = {
             item: this.state.textItem,
             price: this.state.textPrice
@@ -92,8 +95,8 @@ class InputWantToBuy extends Component {
         } else if (!objInput.item) {
             alert('Please input your Desired Item')
         }else{
-            // this.props.submitWishlist(this.props.userId, this.state.textItem, parseInt(this.state.textPrice), this.state.thumbnail)
-            alert(this.props.userId)
+            this.props.submitWishlist(this.props.userId, this.state.textItem, parseInt(this.state.textPrice), this.state.thumbnail)
+            // alert(this.props.userId)
         }
         //
     }

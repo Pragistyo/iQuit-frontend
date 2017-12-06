@@ -14,8 +14,9 @@ const getRecommendationsByCategory = (payload) => {
 }
 
 const setRecommendationsState = (recommendations=[]) => {
+  alert('from setRecom ' + JSON.stringify(recommendations) )
   return {
-    type: 'SET_RECOMMENDATION',
+    type: 'SET_RECOMMENDATIONS',
     state: recommendations,
   };
 }

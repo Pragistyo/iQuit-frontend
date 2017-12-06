@@ -198,72 +198,16 @@ class Interests extends Component {
         color="#fe7013"
         title='PICK HERE'
         onPress={() => { this.toggleModal(true) }}/>
-
-        {/* <Picker
-          selectedValue={this.state.language}
-          onValueChange={(itemValue, itemIndex) => this.setState({ language: itemValue })}>
-          {langeuageData.map((dataItem,index) => {
-            return(
-              <Picker.Item key={index} label={dataItem} value={dataItem} />
-            )
-          })}
-        </Picker> */}
       </View>
     )
   }
 }
 
-// const mapState = (state) => {
-//   return {
-//     bla: state.bla
-//   }
-// }
-
-// const mapActions = (dispatch) => {
-//   return {
-//     bla: (params) => dispatch(bla(params))
-//   }
-// }
-
-// const connectedComponent = connect(
-//   mapState,
-//   mapActions
-// )(Interests)
-
-
-// export default connectedComponent
-
-{/* <Modal animationType={"slide"} transparent={false}
-  visible={this.state.modalVisible}
-  onRequestClose={() => { console.log("Modal has been closed.") }}>
-  <View>
-    {this.state.category.map((dataItem, index) => {
-      return (
-        <CheckBox
-          center
-          key={index}
-          onPress={this.CheckBox.bind(this, index)}
-          title={dataItem.name}
-          checked={dataItem.status}
-          value={dataItem.name} />
-      )
-    })}
-    <TouchableHighlight onPress={() => {
-      this.toggleModal(!this.state.modalVisible)
-    }}>
-      <Text >Close Modal</Text>
-    </TouchableHighlight>
-
-  </View>
-</Modal >
-
-  <TouchableHighlight onPress={() => { this.toggleModal(true) }}>
-    <Text>Open Modal</Text>
-  </TouchableHighlight > */}
 
 function mapStateToProps(state, props) {
   return {
     interests: state.register.interests,
+    userId: this.state.userId,
   }
 }
 
@@ -271,7 +215,16 @@ function mapDispatchToProps(dispatch, props) {
   return {
     setInterests: (interests) => {
       dispatch(registerActions.setInterests(interests))
-    }
+    },
+    addToWishList: (userId, name, price, thumbnail) => {
+      const dataSent = {
+        name: name,
+        user_id: userId,
+        price: price,
+        thumbnail: thumbnail,
+      }
+      dispatch(wishlistActions.addWishlist(dataSent))
+    },
   }
 }
 

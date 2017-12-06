@@ -48,20 +48,21 @@ class WantToBuy extends Component {
             return (<View style={styles.imageTitlePriceGrouping} key={index}>
               <Image
                 style={ styles.imageInCard }
-                source={{ uri: this.props.wishlists[0].thumbnail }}
+                source={{ uri: this.props.wishlists[index].thumbnail }}
                 resizeMode="contain"
               />
               <View
                 style={ styles.containerDetail }
               >
                 <Text style={styles.detailStyling}>
-                  {this.props.wishlists[0].name}
+                  {this.props.wishlists[index].name}
                 </Text>
                 <Text style={styles.detailStyling}>
-                  Rp. {thousandSeparator(this.props.wishlists[0].price)}
+                  Rp. {thousandSeparator(this.props.wishlists[index].price)}
                 </Text>
                 <Text style={styles.detailStyling}>
-                  Could buy at:  {this.props.wishlists[0].could_buy.slice(0, 10)}
+                  {/* Could buy at:  {this.props.wishlists[index].could_buy.slice(index, 10)} */}
+                  Could buy at:  {new Date(this.props.wishlists[index].could_buy).toLocaleDateString()}
                 </Text>
                 <Text style={styles.detailStyling}>
                 Tap for details..
