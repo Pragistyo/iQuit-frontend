@@ -56,11 +56,14 @@ class Messages extends Component {
       data={this.state.messages}
       renderItem={({ item }) => (
         <View style={styles.margins}>
-          <Text style={styles.userName}>
-            {`${item.username}`}<Text style={styles.postDate}>
-              {item.created.slice(0, 10)}
+          <View >
+            <Text style={styles.userName}>
+              {`${item.username}`}
             </Text>
-          </Text>
+            <Text style={styles.postDate}>
+              {`${item.created.slice(0, 10)}`}
+            </Text>
+          </View>
           <Text style={styles.content}>
             {`${item.message}`}
           </Text>
@@ -82,18 +85,20 @@ const styles = StyleSheet.create({
 
   userName: {
     fontSize: 20,
-    color: '#00897b',
+    color: '#fe7013',
+    fontWeight: 'bold'
   },
 
   postDate: {
-    fontSize: 10,
+    fontSize: 12,
+    color: 'darkgrey',
+    alignSelf: 'flex-end'
   },
 
   content: {
-    fontFamily: 'sans-serif-thin',
-    fontSize: 23,
+    fontSize: 22,
     marginLeft: 3,
-    color: '#212121',
+    color: 'black',
   }
 })
 

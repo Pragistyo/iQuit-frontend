@@ -69,7 +69,7 @@ export default class Kohana extends BaseInput {
                 {
                   translateX: focusedAnim.interpolate({
                     inputRange: [0, 1],
-                    outputRange: [-15 - iconSize, 0],
+                    outputRange: [-25 - iconSize, 0],
                   }),
                 },
               ],

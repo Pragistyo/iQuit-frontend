@@ -20,7 +20,7 @@ class Home extends Component {
   constructor(props) {
     super(props);
     // alert(JSON.stringify(this.props.userData))
-    AsyncStorage.removeItem('userId')
+    // AsyncStorage.removeItem('userId')
   }
 
   // render() {

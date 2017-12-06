@@ -49,7 +49,7 @@ class AddictionLevel extends Component {
         />
         <Kohana
           style={{ backgroundColor: 'white', width: 300, marginBottom: 5, borderColor: '#fe7013', borderWidth: 2 }}
-          label={'Cigar per day (Pack)'}
+          label={'Cigar per day'}
           iconClass={FontAwesome}
           iconName={'minus'}
           iconColor={'#fe7013'}
@@ -71,6 +71,7 @@ class AddictionLevel extends Component {
          onChangeText={ (text) => { this.props.setPricePerPack(parseInt(text)) } }
          value={this.props.pricePerPack}
         />
+        <View style={{ height: 60 }} />
       </View>
     )
   }
