@@ -57,7 +57,7 @@ class TopRecommendations extends Component {
         </List>
         <Button
           title="More recommendation"
-          backgroundColor="#e3871fff"
+          backgroundColor="#fe7013"
         />
       </Card>
     );

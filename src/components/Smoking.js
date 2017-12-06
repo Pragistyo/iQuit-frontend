@@ -21,14 +21,6 @@ class Smoking extends Component {
 
   render() {
     return (
-      // <Button
-      //   title={`${this.props.currentCigar} + 1`}
-      //   backgroundColor='#e3871fff'
-      //   containerViewStyle={styles.styling}
-      //   onPress={async () => {
-      //     this.props.consumeOneCigar(this.props.currentCigar)
-      //   }}
-      // />
       <TouchableHighlight
       style={styles.circle}
       onPress={async () => {
