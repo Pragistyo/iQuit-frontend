@@ -94,6 +94,7 @@ function mapDispatchToProps(dispatch, props) {
     addConsumption: (cigareteConsumption) => {
       dispatch(cigareteConsumptionActions.consumeOne());
       dispatch(healthStatNewActions.fetchHealthStat(cigareteConsumption+1));
+      dispatch(userActions.reduceMoney())
     }
   };
 }

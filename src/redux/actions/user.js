@@ -11,8 +11,8 @@ function fetchUserData() {
   }
 }
 
-function updateUserData(userData={}) {
-  return  async (dispatch) => {
+function updateUserData(userData = {}) {
+  return async (dispatch) => {
     try {
       const response = await axios.put(`http://35.198.215.58/users/${userData._id}`, userData);
       // alert(JSON.stringify(response.data))
@@ -24,7 +24,7 @@ function updateUserData(userData={}) {
   };
 }
 
-function setUserData(userData={}) {
+function setUserData(userData = {}) {
   const resState = {};
   userData.hasOwnProperty('name') && (resState.name = userData.name);
   userData.hasOwnProperty('_id') && (resState.userId = userData._id);
@@ -40,8 +40,15 @@ function setUserData(userData={}) {
   };
 }
 
+function reduceMoney() {
+  return {
+    type: "REDUCE_MONEY"
+  }
+}
+
 export default {
   setUserData,
   fetchUserData,
   updateUserData,
+  reduceMoney
 }

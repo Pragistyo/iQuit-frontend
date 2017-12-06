@@ -8,6 +8,7 @@ import {
 import {
   Divider,
 } from 'react-native-elements';
+import { GiftedChat } from 'react-native-gifted-chat'
 import axios from 'axios';
 
 import db from '../helpers/fire-database';
@@ -29,8 +30,12 @@ class Messages extends Component {
         if (snapshot.val().hasOwnProperty(index)) {
           // messages.push(snapshot.val()[index])
           messages.push(Object.assign({}, snapshot.val()[index], {
+            _id: index,
             key: index,
             utcValue: new Date(snapshot.val()[index].created).toUTCString(),
+            text: snapshot.val()[index].message,
+            createdAt: new Date(snapshot.val()[index].created),
+            user: { _id: index, name: snapshot.val().username }
           }));
         }
       }
@@ -50,27 +55,38 @@ class Messages extends Component {
     this.firebaseMessagesEventListener();
   }
 
+  onSend(messages = []) {
+    this.setState((previousState) => ({
+      messages: GiftedChat.append(previousState.messages, messages),
+    }));
+  }
+
   render() {
     return (
-      <FlatList
-      data={this.state.messages}
-      renderItem={({ item }) => (
-        <View style={styles.margins}>
-          <View >
-            <Text style={styles.userName}>
-              {`${item.username}`}
-            </Text>
-            <Text style={styles.postDate}>
-              {`${item.created.slice(0, 10)}`}
-            </Text>
-          </View>
-          <Text style={styles.content}>
-            {`${item.message}`}
-          </Text>
-          <Divider/>
-        </View>
-      )}
+      <GiftedChat
+        messages={this.state.messages}
+        // onSend={(messages) => this.onSend(messages)}
       />
+      // <FlatList
+      // data={this.state.messages}
+      // renderItem={({ item }) => (
+      //   <View style={styles.margins}>
+        
+      //     <View >
+      //       <Text style={styles.userName}>
+      //         {`${item.username}`}
+      //       </Text>
+      //       <Text style={styles.postDate}>
+      //         {`${item.created.slice(0, 10)}`}
+      //       </Text>
+      //     </View>
+      //     <Text style={styles.content}>
+      //       {`${item.message}`}
+      //     </Text>
+      //     <Divider/>
+      //   </View>
+      // )}
+      // />
     )
   }
 }

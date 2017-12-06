@@ -22,7 +22,6 @@ class WantToBuy extends Component {
   }
 
   render() {
-    // alert(this.props.wishlists.length)
     return (
       <Card
         title="I want to spend my money to buy this instead."
@@ -55,26 +54,6 @@ class WantToBuy extends Component {
               </View>
             </View>)
           })
-        // (<View style={styles.imageTitlePriceGrouping}>
-        //   <Image
-        //     style={ styles.imageInCard }
-        //     source={{ uri: this.props.wishlists[0].thumbnail }}
-        //     resizeMode="contain"
-        //   />
-        //   <View
-        //     style={ styles.containerDetail }
-        //   >
-        //     <Text style={styles.detailStyling}>
-        //       {this.props.wishlists[0].name}
-        //     </Text>
-        //     <Text style={styles.detailStyling}>
-        //       Rp. {thousandSeparator(this.props.wishlists[0].price)}
-        //     </Text>
-        //     <Text style={styles.detailStyling}>
-        //     Tap for details..
-        //     </Text>
-        //   </View>
-        // </View>)
         }
       </Card>
     );
