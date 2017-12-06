@@ -15,7 +15,7 @@ class MoneySaved extends Component {
     console.log('bababbabab ====== ahhahahahah ======= 8')
     return (
       <Card
-        containerStyle={{ width: Dimensions.get('window').width }}
+        containerStyle={{ width: Dimensions.get('window').width-30 }}
       >
         <View>
           <Text style={{ fontWeight: 'bold' }}>
