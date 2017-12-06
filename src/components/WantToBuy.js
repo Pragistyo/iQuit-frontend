@@ -6,6 +6,9 @@ import {
   StyleSheet,
   View,
   AsyncStorage,
+  Button,
+  Modal,
+  ScrollView
 } from 'react-native';
 import {
   Card
@@ -13,12 +16,24 @@ import {
 
 import wishlistActions from '../redux/actions/wishlist';
 import thousandSeparator from '../helpers/thousandSeparator';
+import InputWannaBuy from '../components/InputWantToBuy'
 
 class WantToBuy extends Component {
   constructor(props) {
     super(props)
     this.props.initWishlist();
     this.props.fetchData();
+    this.state = {
+      modalVisible: false,
+    }
+  }
+
+  onPressInterest(){
+    alert()
+  }
+
+  toggleModal(visible) {
+    this.setState({ modalVisible: visible });
   }
 
   render() {
@@ -28,9 +43,9 @@ class WantToBuy extends Component {
         wrapperStyle={{ flex: 1 }}
       >
         {this.props.wishlists.length > 0 &&
-          this.props.wishlists.map((item) => {
+          this.props.wishlists.map((item, index) => {
             console.log(item);
-            return (<View style={styles.imageTitlePriceGrouping}>
+            return (<View style={styles.imageTitlePriceGrouping} key={index}>
               <Image
                 style={ styles.imageInCard }
                 source={{ uri: this.props.wishlists[0].thumbnail }}
@@ -55,6 +70,34 @@ class WantToBuy extends Component {
             </View>)
           })
         }
+        <Modal animationType={"slide"} transparent={false}
+          visible={this.state.modalVisible}
+          onRequestClose={() => { console.log("Modal has been closed.") }}>
+          <View style={{ flex: 1 }}>
+            <ScrollView>
+              <View style={{ alignItems: 'center' }}>
+                <Text style={{ fontSize: 20, marginBottom: 10 }}>Input Your Wish Item:</Text>
+              </View>
+              <InputWannaBuy toggleWantToBuy={() => {
+                this.toggleModal(!this.state.modalVisible);
+              }}/>
+            </ScrollView>
+            {/* <Button
+              color="#fe7013"
+              title="SUBMIT"
+              style={{ alignItems: 'center' }}
+              onPress={() => {
+                this.toggleModal(!this.state.modalVisible);
+              }}>
+            </Button> */}
+
+          </View>
+        </Modal >
+        <Button
+          color="#fe7013"
+          title="Add Interest"
+          onPress={() => { this.toggleModal(true) }}
+        />
       </Card>
     );
   }

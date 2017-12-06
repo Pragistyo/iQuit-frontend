@@ -20,7 +20,7 @@ class InputWantToBuy extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            textItem : 'things that you want to buy miserely',
+            textItem : null,
             textPrice: 0,
             thumbnail: ''
         }
@@ -34,6 +34,7 @@ class InputWantToBuy extends Component {
                     <FormLabel>  Item: </FormLabel>
                     <TextInput
                         name="itemInput"
+                        placeholder="  Please Input Your Desired Item"
                         style={{ width:300,height: 40, borderColor: 'orange', borderWidth: 1}}
                         onChangeText={(e) => this.setState({textItem:e}) }
                     />
@@ -42,6 +43,7 @@ class InputWantToBuy extends Component {
                     <FormLabel>  Price: </FormLabel>
                     <TextInput
                         name="priceInput"
+                        placeholder="  Please Input The price of the Item"
                         style={{ width: 300, height: 40, borderColor: 'orange', borderWidth: 1 }}
                         onChangeText={(e) => this.setState({textPrice:Number(e)})}
                     />
@@ -50,11 +52,18 @@ class InputWantToBuy extends Component {
                     <FormLabel>  Image URL: </FormLabel>
                     <TextInput
                         name="linkInput"
+                        placeholder="  Input picture url of your wished item"
                         style={{ width: 300, height: 40, borderColor: 'orange', borderWidth: 1 }}
                         onChangeText={(e) => this.setState({thumbnail:e})}
                     />
                 </View>
                 <View style={{ alignItems: 'center', paddingTop:20}}>
+                    <Button
+                        style={{ paddingLeft: 50, alignItems: 'center', width: 20 }}
+                        color="darkgray"
+                        title="Cancel"
+                        onPress={this.props.toggleWantToBuy}
+                    />
                     <Button
                         style={{ paddingLeft:50,alignItems: 'center', width: 20}}
                         color="#fe7013"
@@ -72,18 +81,20 @@ class InputWantToBuy extends Component {
     // }
 
     submitInputWannaBuy () {
-        // let objInput = {
-        //     item: this.state.textItem,
-        //     price: this.state.textPrice
-        // }
-        // if (!objInput.price){
-        //     // alert('Please input "PRICE" with number')
-        // }else{
-        //     // alert(JSON.stringify(objInput))
-        // }
-        //
+        let objInput = {
+            item: this.state.textItem,
+            price: this.state.textPrice
+        }
+        if (!objInput.price){
+            alert('Please input "PRICE" with number')
+            alert(JSON.stringify(objInput))
+        } else if (!objInput.item) {
+            alert('Please input your Desired Item')
+        }else{
+            this.props.submitWishlist(this.props.userId, this.state.textItem, parseInt(this.state.textPrice), this.state.thumbnail)
+        }
         // alert(this.props.userId)
-        this.props.submitWishlist(this.props.userId, this.state.textItem, parseInt(this.state.textPrice), this.state.thumbnail)
+        //
     }
 }
 
