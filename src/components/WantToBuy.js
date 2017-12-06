@@ -42,7 +42,7 @@ class WantToBuy extends Component {
         title="I want to spend my money to buy this instead."
         wrapperStyle={{ flex: 1 }}
       >
-        {this.props.wishlists.length > 0 &&
+        {Array.isArray(this.props.wishlists) && this.props.wishlists.length > 0 &&
           this.props.wishlists.map((item, index) => {
             console.log(item);
             return (<View style={styles.imageTitlePriceGrouping} key={index}>
@@ -125,6 +125,7 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state, props) => {
+  // alert(JSON.stringify(state.wishlist))
   return {
     wishlists: state.wishlist,
     // name: state.wishlist[0].name,

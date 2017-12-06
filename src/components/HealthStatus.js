@@ -74,10 +74,9 @@ class HealthStatus extends Component {
             {'Cancer Chance Increased: '}
           </Text>
           <Text>
-            {this.props.newState.increasedCancerChance}
+            {this.props.newState.increasedCancerChance ? ' YES ': ' NO '}
           </Text>
         </View>
-
       </Card>
     );
   }

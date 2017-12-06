@@ -19,7 +19,7 @@ const setWantToBuy = (payload=[]) => {
     item.hasOwnProperty(could_buy) && (tempState.couldBuy= item.could_buy)
     item.hasOwnProperty(created_at) && (tempState.createdAt= item.created_at)
     state.push(tempState);
-  } )
+  })
 
 return {
     type: 'SET_WANT_TO_BUY',

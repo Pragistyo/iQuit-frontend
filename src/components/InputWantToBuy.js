@@ -81,19 +81,20 @@ class InputWantToBuy extends Component {
     // }
 
     submitInputWannaBuy () {
+        // alert('method')
         let objInput = {
             item: this.state.textItem,
             price: this.state.textPrice
         }
         if (!objInput.price){
             alert('Please input "PRICE" with number')
-            alert(JSON.stringify(objInput))
+            // alert(JSON.stringify(objInput))
         } else if (!objInput.item) {
             alert('Please input your Desired Item')
         }else{
-            this.props.submitWishlist(this.props.userId, this.state.textItem, parseInt(this.state.textPrice), this.state.thumbnail)
+            // this.props.submitWishlist(this.props.userId, this.state.textItem, parseInt(this.state.textPrice), this.state.thumbnail)
+            alert(this.props.userId)
         }
-        // alert(this.props.userId)
         //
     }
 }

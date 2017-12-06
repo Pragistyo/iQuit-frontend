@@ -27,7 +27,7 @@ class DiscussionBoard extends Component {
         <View style={styles.upperScreenMargin}/>
         <DiscussionBoardTitle/>
         <Messages/>
-        <DiscussionBoardPost/>
+        {/* <DiscussionBoardPost/> */}
       </KeyboardAvoidingView>
     );
   }
