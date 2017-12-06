@@ -207,7 +207,7 @@ class Interests extends Component {
 function mapStateToProps(state, props) {
   return {
     interests: state.register.interests,
-    userId: this.state.userId,
+    userId: state.userId,
   }
 }
 
