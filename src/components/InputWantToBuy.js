@@ -57,8 +57,8 @@ class InputWantToBuy extends Component {
                 <View style={{ alignItems: 'center', paddingTop:20}}>
                     <Button
                         style={{ paddingLeft:50,alignItems: 'center', width: 20}}
-                        color="#841584"
-                        title="Submit"
+                        color="#fe7013"
+                        title="Add WishList"
                         onPress={() => { this.submitInputWannaBuy()} }
                     />
                 </View>

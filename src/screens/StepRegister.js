@@ -10,9 +10,12 @@ import {
     KeyboardAvoidingView,
     AsyncStorage,
 } from 'react-native';
+import { 
+    Divider
+} from 'react-native-elements'
 import ViewPager from 'react-native-viewpager';
 import StepIndicator from 'react-native-step-indicator';
-const PAGES = ['STEP 1', 'STEP 2', 'STEP 3', 'STEP 4', 'STEP 5'];
+const PAGES = ['STEP 1', 'STEP 2', 'STEP 3', 'STEP 4'];
 import { connect } from 'react-redux';
 
 // components
@@ -86,10 +89,10 @@ class StepRegister extends Component {
 
                 <View style={styles.stepIndicator}>
                     <StepIndicator
-                        stepCount={5}
+                        stepCount={4}
                         customStyles={secondIndicatorStyles}
                         currentPosition={this.state.currentPage}
-                        labels={["Welcome !", "Profile Info", "Addiction Level", "Interests", "Complete Registration"]} />
+                        labels={["Welcome !", "Profile Info", "Addiction Level", "Interests"]} />
                 </View>
 
                 <ViewPager
@@ -172,20 +175,25 @@ class StepRegister extends Component {
         } else if (data === 'STEP 4') {
             return (<ScrollView style={{ flex: 1 }}>
                 <View style={styles.page}>
-                    {/* <Text>{data}</Text> */}
-                    <Text>Pick Your Kind Of Interest: </Text>
+                    <View style={{}}>
+                        <Text style={styles.headerStyling}>
+                            Pick Your Kind Of Interest:
+                        </Text>
+                        <Divider style={{ backgroundColor: '#9E9E9E' }} />
+                    </View>
                     <View style={{ paddingTop: 70, alignItems: 'center' }}>
                         <Interests />
                     </View>
                 </View>
             </ScrollView>)
-        } else if (data === 'STEP 5') {
-            return (<ScrollView style={{ flex: 1 }}>
-                <View style={{paddingTop:2, flex:1, justifyContent: 'center', alignItems:'center'}}>
-                <Text>{data}</Text>
-                </View>
-            </ScrollView>)
-        }
+        } 
+        // else if (data === 'STEP 5') {
+        //     return (<ScrollView style={{ flex: 1 }}>
+        //         <View style={{paddingTop:2, flex:1, justifyContent: 'center', alignItems:'center'}}>
+        //         <Text>{data}</Text>
+        //         </View>
+        //     </ScrollView>)
+        // }
     }
 }
 const styles = StyleSheet.create({
