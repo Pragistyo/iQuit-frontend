@@ -19,7 +19,7 @@ class DiscussionBoard extends Component {
         <Icon
         type="MaterialIcons"
         name="forum"
-        color="#00897b"
+        color="#fe7013"
         />
         <Text style={styles.title}>
           Discussion Board
@@ -32,7 +32,7 @@ class DiscussionBoard extends Component {
 const styles = StyleSheet.create({
   title: {
     fontSize: 25,
-    color: '#00897b',
+    color: '#fe7013',
   },
 
   grouping: {
