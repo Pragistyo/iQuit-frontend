@@ -92,7 +92,7 @@ class WantToBuy extends Component {
             </Button> */}
 
           </View>
-        </Modal >
+        </Modal>
         <Button
           color="#fe7013"
           title="Add Wishlist"

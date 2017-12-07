@@ -10,7 +10,7 @@ import {
     KeyboardAvoidingView,
     AsyncStorage,
 } from 'react-native';
-import { 
+import {
     Divider
 } from 'react-native-elements'
 import ViewPager from 'react-native-viewpager';
@@ -186,7 +186,7 @@ class StepRegister extends Component {
                     </View>
                 </View>
             </ScrollView>)
-        } 
+        }
         // else if (data === 'STEP 5') {
         //     return (<ScrollView style={{ flex: 1 }}>
         //         <View style={{paddingTop:2, flex:1, justifyContent: 'center', alignItems:'center'}}>
@@ -235,6 +235,7 @@ function mapDispatchToProps(dispatch, props) {
         username: registerData.name,
         age: registerData.age,
         pricePerPack: registerData.pricePerPack,
+        cigarPerPack: registerData.cigarPerPack,
         interests: registerData.interests.map((item) => { return item.name })
 
       }

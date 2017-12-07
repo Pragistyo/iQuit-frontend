@@ -38,6 +38,19 @@ class AddictionLevel extends Component {
     }
   }
 
+  onChangePricePerPack(e) {
+    const textPrice = e.replace(/,/g, '');
+    const formatMoney = new Promise((resolve) => {
+      e = e.replace(/,/g, '');
+      resolve(e.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+    });
+
+    formatMoney.then((value) => {
+      this.props.setPricePerPack(parseInt(textPrice));
+      this.props.setFormattedPricePerPack(value);
+    });
+  }
+
   render() {
     console.log('bababbabab ====== ahhahahahah ======= 1')
     return (
@@ -50,7 +63,7 @@ class AddictionLevel extends Component {
         />
         <Kohana
           style={{ backgroundColor: 'white', width: 300, marginBottom: 5, borderColor: '#fe7013', borderWidth: 2 }}
-          label={'Cigar per day'}
+          label={'Cigarette(s) per day'}
           iconClass={FontAwesome}
           iconName={'minus'}
           iconColor={'#fe7013'}
@@ -69,8 +82,20 @@ class AddictionLevel extends Component {
           labelStyle={{ color: '#fe7013' }}
           inputStyle={{ color: '#fe7013' }}
          useNativeDriver
-         onChangeText={ (text) => { this.props.setPricePerPack(parseInt(text)) } }
-         value={this.props.pricePerPack}
+         onChangeText={ this.onChangePricePerPack.bind(this) }
+         value={this.props.formattedPricePerPack}
+        />
+        <Kohana
+          style={{ backgroundColor: 'white', width: 300, marginBottom: 5, borderColor: '#fe7013', borderWidth: 2 }}
+          label={'Cigarette(s) per pack'}
+          iconClass={FontAwesome}
+          iconName={'minus'}
+          iconColor={'#fe7013'}
+          labelStyle={{ color: '#fe7013' }}
+          inputStyle={{ color: '#fe7013' }}
+          useNativeDriver
+          onChangeText={(text) => { this.props.setCigarPerPack(parseInt(text)) }}
+          value={this.props.cigarPerPack}
         />
         <View style={{ height: 60 }} />
       </View>
@@ -135,7 +160,9 @@ const styles = StyleSheet.create({
 function mapStateToProps(state, props) {
   return {
     pricePerPack: state.register.pricePerPack,
+    formattedPricePerPack: state.register.formattedPricePerPack,
     cigarPerDay: state.register.cigarPerDay,
+    cigarPerPack: state.register.cigarPerPack,
   };
 }
 
@@ -144,9 +171,15 @@ function mapDispatchToProps(dispatch, props) {
     setPricePerPack: (pricePerPack) => {
       dispatch(registerActions.setPricePerPack(pricePerPack));
     },
+    setFormattedPricePerPack: (formattedPricePerPack) => {
+      dispatch(registerActions.setFormattedPricePerPack(formattedPricePerPack));
+    },
     setCigarPerDay: (cigarPerDay) => {
       dispatch(registerActions.setCigarPerDay(cigarPerDay));
-    }
+    },
+    setCigarPerPack: (cigarPerPack) => {
+      dispatch(registerActions.setCigarPerPack(cigarPerPack));
+    },
   };
 }
 

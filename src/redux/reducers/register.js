@@ -4,7 +4,9 @@ const defaultState = {
   name: '',
   age: 0,
   pricePerPack: 0,
+  formattedPricePerPack: '',
   cigarPerDay: 0,
+  cigarPerPack: 0,
   interests: [],
 }
 
@@ -19,7 +21,13 @@ function reducer(state=defaultState, action) {
     case actions.setPricePerPack().type:
       return Object.assign({}, state, action.state);
 
+    case actions.setFormattedPricePerPack().type:
+      return Object.assign({}, state, action.state);
+
     case actions.setCigarPerDay().type:
+      return Object.assign({}, state, action.state);
+
+    case actions.setCigarPerPack().type:
       return Object.assign({}, state, action.state);
 
     case actions.setInterests().type:

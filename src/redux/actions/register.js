@@ -31,11 +31,29 @@ const setPricePerPack = (pricePerPack) => {
   }
 }
 
+const setFormattedPricePerPack = (formattedPricePerPack) => {
+  return {
+    type: 'SET_FORMATTED_PRICE_PER_PACK',
+    state: {
+      formattedPricePerPack,
+    }
+  }
+}
+
 const setCigarPerDay = (cigarPerDay) => {
   return {
     type: 'SET_CIGAR_PER_DAY',
     state: {
       cigarPerDay,
+    }
+  }
+}
+
+const setCigarPerPack = (cigarPerPack) => {
+  return {
+    type: 'SET_CIGAR_PER_PACK',
+    state: {
+      cigarPerPack,
     }
   }
 }
@@ -65,7 +83,7 @@ const submitData = (registerData) => {
       age: registerData.age,
       price_per_pack: registerData.pricePerPack,
       interests: registerData.interests,
-      price_per_cigarette: registerData.pricePerPack/12,
+      price_per_cigarette: registerData.pricePerPack/registerData.cigarPerPack,
       money_saved: registerData.pricePerPack
     }
     try {
@@ -87,7 +105,9 @@ export default {
   setName,
   setAge,
   setPricePerPack,
+  setFormattedPricePerPack,
   setCigarPerDay,
+  setCigarPerPack,
   setInterests,
   submitData,
   userData,
