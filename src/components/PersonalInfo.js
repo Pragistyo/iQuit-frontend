@@ -36,7 +36,7 @@ class PersonalInfo extends Component {
   }
 
   render() {
-    console.log('bababbabab ====== ahhahahahah ======= 9')
+    // console.log('bababbabab ====== ahhahahahah ======= 9')
     return (
       <View style={{padding: 4}}>
           {/* <View style={{ paddingLeft: 20 }}>

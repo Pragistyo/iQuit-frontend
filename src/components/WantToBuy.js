@@ -37,7 +37,7 @@ class WantToBuy extends Component {
   }
 
   render() {
-    console.log('bababbabab ====== ahhahahahah ======= 14')
+    // console.log('bababbabab ====== ahhahahahah ======= 14')
     return (
       <Card
         title="I want to spend my money to buy this instead."
@@ -45,7 +45,7 @@ class WantToBuy extends Component {
       >
         {Array.isArray(this.props.wishlists) && this.props.wishlists.length > 0 &&
           this.props.wishlists.map((item, index) => {
-            console.log(item);
+            // console.log(item);
             return (<View style={styles.imageTitlePriceGrouping} key={index}>
               <Image
                 style={ styles.imageInCard }

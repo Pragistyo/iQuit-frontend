@@ -95,8 +95,8 @@ const submitData = (registerData) => {
       await AsyncStorage.setItem('userId', data._id)
       await AsyncStorage.setItem('cigarPerDay', '0')
     } catch (e) {
-      console.log('---------------000000000000000================-----------');
-      console.log(e);
+      // console.log('---------------000000000000000================-----------');
+      // console.log(e);
     }
   }
 }

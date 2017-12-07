@@ -16,7 +16,7 @@ class WantToBuy extends Component {
   }
 
   render() {
-    console.log('bababbabab ====== ahhahahahah ======= 15')
+    // console.log('bababbabab ====== ahhahahahah ======= 15')
     return (
       <Card
         containerStyle={{width: Dimensions.get('window').width - 20}}

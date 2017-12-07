@@ -83,7 +83,6 @@ class InputWantToBuy extends Component {
     }
 
     submitInputWannaBuy () {
-      alert(this.state.textPrice);
         // alert(this.props.userId)
         let objInput = {
             item: this.state.textItem,

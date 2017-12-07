@@ -31,7 +31,7 @@ export class Messages extends Component {
       const messages = [];
       for (var index in snapshot.val()) {
         if (snapshot.val().hasOwnProperty(index)) {
-          const _id = this.props.username === snapshot.val()[index].username ? 1 : 2;
+          const _id = this.props.username === snapshot.val()[index].username ? 1 : snapshot.val()[index].username;
           // messages.push(snapshot.val()[index])
           messages.push(Object.assign({}, snapshot.val()[index], {
             _id: index,
@@ -70,7 +70,6 @@ export class Messages extends Component {
   }
 
   render() {
-    console.log('bababbabab ====== ahhahahahah ======= 7')
     return (
       <GiftedChat
         messages={this.state.messages}

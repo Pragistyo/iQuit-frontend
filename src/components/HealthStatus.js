@@ -22,7 +22,7 @@ class HealthStatus extends Component {
   }
 
   render() {
-    console.log('bababbabab ====== ahhahahahah ======= 4')
+    // console.log('bababbabab ====== ahhahahahah ======= 4')
     return (
       <Card
         containerStyle={{ width: Dimensions.get('window').width }}

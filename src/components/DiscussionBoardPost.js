@@ -29,7 +29,7 @@ class DiscussionBoardPost extends Component {
   }
 
   render() {
-    console.log('bababbabab ====== ahhahahahah ======= 2')
+    // console.log('bababbabab ====== ahhahahahah ======= 2')
     return (
       <View>
         <FormInput

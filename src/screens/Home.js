@@ -48,7 +48,7 @@ class Home extends Component {
   //   );
   // }
   render() {
-    console.log('bababbabab ====== ahhahahahah ======= kajnskansd')
+    // console.log('bababbabab ====== ahhahahahah ======= kajnskansd')
     return (
       <View>
       <View style={{ alignItems: 'center', top:'80%', position:'absolute', zIndex: 1, marginLeft:'30%' }}>

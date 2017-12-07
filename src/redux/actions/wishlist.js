@@ -13,7 +13,7 @@ const addWishlist = (payload) => {
   return async (dispatch) => {
     const { data } = await axios.post('http://35.198.215.58/wishlist', dataSent);
     const wishlistAdded = data;
-    console.log('payload');
+    // console.log('payload');
     dispatch(pushWishlistState(wishlistAdded));
   }
 }

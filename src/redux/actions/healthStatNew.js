@@ -15,7 +15,7 @@ function fetchHealthStat(cigareteConsumption) {
 }
 
 function setHealthState(state=defaultState) {
-  console.log(state);
+  // console.log(state);
   return {
     type: 'SET_HEALTH_STAT',
     state: state

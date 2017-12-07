@@ -12,7 +12,7 @@ class MoneySaved extends Component {
   }
 
   render() {
-    console.log('bababbabab ====== ahhahahahah ======= 8')
+    // console.log('bababbabab ====== ahhahahahah ======= 8')
     return (
       <Card
         containerStyle={{ width: Dimensions.get('window').width-30 }}

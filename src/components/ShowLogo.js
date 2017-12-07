@@ -9,7 +9,7 @@ class ShowLogo extends Component {
   }
 
   render() {
-    console.log('bababbabab ====== ahhahahahah ======= 11')
+    // console.log('bababbabab ====== ahhahahahah ======= 11')
     return (
       <Image
         style={{ resizeMode: 'contain', width: 200, height:100 }}

@@ -14,7 +14,7 @@ class DiscussionBoard extends Component {
   }
 
   render() {
-    console.log('bababbabab ====== ahhahahahah ======= 3')
+    // console.log('bababbabab ====== ahhahahahah ======= 3')
     return (
       <View style={styles.grouping}>
         <Icon
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    
+
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.8,

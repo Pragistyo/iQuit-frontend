@@ -33,7 +33,7 @@ class TopRecommendations extends Component {
       const randomCategoryFromUser = Math.ceil( Math.random() * this.props.interests.length-1 )
       const catId = interestToCatId(this.props.interests[randomCategoryFromUser]);
       const cigareteCostForThreeMonths = this.props.pricePerPack * 120
-      console.log('========> cigarete 4 mon',cigareteCostForThreeMonths)
+      // console.log('========> cigarete 4 mon',cigareteCostForThreeMonths)
       this.props.getRecommendationsByCategory(catId, cigareteCostForThreeMonths)
     }
   }
@@ -50,7 +50,7 @@ class TopRecommendations extends Component {
   }
 
   render() {
-    console.log('bababbabab ====== ahhahahahah ======= 13')
+    // console.log('bababbabab ====== ahhahahahah ======= 13')
     return (
       <Card
         title={"This is stuff that you can buy from collecting 3 months worth of cigarette"}

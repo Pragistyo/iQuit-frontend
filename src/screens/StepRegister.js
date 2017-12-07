@@ -75,7 +75,7 @@ class StepRegister extends Component {
             await this.props.submitData(this.props.registerData);
             await AsyncStorage.setItem('averagePerDay', (this.props.registerData.cigarPerDay).toString())
             await AsyncStorage.setItem('cigarPerDay', '0')
-            console.log(this.props.allState);
+            // console.log(this.props.allState);
             this.props.activateSwitchScreen();
           } catch (e) {
             alert(e)
