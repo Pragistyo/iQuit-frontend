@@ -66,9 +66,6 @@ class WantToBuy extends Component {
                   {/* {this.props.wishlists[index].could_buy} */}
                   Could buy at:  {new Date(this.props.wishlists[index].could_buy).toLocaleDateString()}
                 </Text>
-                <Text style={styles.detailStyling}>
-                Tap for details..
-                </Text>
               </View>
             </View>)
           })

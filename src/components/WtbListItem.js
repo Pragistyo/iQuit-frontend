@@ -36,9 +36,6 @@ class WantToBuy extends Component {
             <Text style={styles.detailStyling}>
               {this.props.item.price}
             </Text>
-            <Text style={styles.detailStyling}>
-            Tap for details..
-            </Text>
           </View>
         </View>
       </Card>

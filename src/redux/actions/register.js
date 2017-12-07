@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { AsyncStorage } from 'react-native';
 
+import userActions from './user';
+
 
 const setName = (name) => {
   return {
@@ -70,7 +72,7 @@ const submitData = (registerData) => {
       // alert('registerData raw'+ JSON.stringify(registerData))
       // alert('sent data to post' + JSON.stringify(dataToBeSend))
       const { data } = await axios.post('http://35.198.215.58/auth/register', dataToBeSend);
-      dispatch(userData(data));
+      dispatch(userActions.setUserData(data));
       // alert(JSON.stringify(data))
       await AsyncStorage.setItem('userId', data._id)
       await AsyncStorage.setItem('cigarPerDay', '0')

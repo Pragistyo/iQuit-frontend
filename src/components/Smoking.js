@@ -9,6 +9,7 @@ import {
   AsyncStorage,
   TouchableHighlight,
   Text,
+  Alert
 } from 'react-native';
 import { connect } from 'react-redux';
 
@@ -75,6 +76,18 @@ const styles = StyleSheet.create({
   }
 })
 
+var arrWords = [
+  'Whenever you think about smoking you must see it as a lifetime’s chain of filth, disease, fear, misery and slavery.',
+  'I would like you to pause for a moment, and to record your own feelings about smoking: what you think it does for you, why you smoke and why you want to',
+  'To me this is the most tragic part of this whole business. How hard we worked to become hooked, and this is why it is difficult to stop teenagers. Because they are still learning to smoke, because they still find cigarettes distasteful, they believe they can stop whenever they want to. Why do they not learn from us?',
+  'Smokers do not smoke because they enjoy it. They do it because they are miserable without it.',
+  'However, you cannot force smokers to stop, and although all smokers secretly want to, until they are ready to do so a pact just creates additional pressure, which increases their desire to smoke. This turns them into secret smokers, which further increases the feeling of dependency.',
+  'The moment you stop smoking, everything that goes wrong in your life is blamed on the fact that you’ve stopped smoking.',
+  'The cigarette gets the credit for everything and the blame for nothing.',
+  'The main reason that smokers find it difficult to quit is that they believe that they are giving up a genuine pleasure or crutch. It is absolutely essential to understand that there is nothing to ‘give up’.',
+  'The whole business of smoking is like forcing yourself to wear tight shoes just to get the pleasure of taking them off.'
+]
+
 function mapStateToProps(state, props) {
   // console.log(JSON.stringify(state))
   return {
@@ -93,6 +106,8 @@ function mapDispatchToProps(dispatch, props) {
       dispatch(userActions.fetchUserData())
     },
     addConsumption: (cigareteConsumption) => {
+      var indexRandom = Math.floor(Math.random() * arrWords.length)
+      Alert.alert('Reminder: ', `${arrWords[indexRandom]} - Allen Carr `)
       dispatch(cigareteConsumptionActions.consumeOne());
       dispatch(healthStatNewActions.fetchHealthStat(cigareteConsumption+1));
       dispatch(userActions.reduceMoney())

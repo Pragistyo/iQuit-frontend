@@ -22,13 +22,12 @@ class InputWantToBuy extends Component {
         this.state = {
             textItem : null,
             textPrice: 0,
-            thumbnail: ''
+            formattedPrice: ''
         }
         this.submitInputWannaBuy = this.submitInputWannaBuy.bind(this);
     }
 
     render () {
-        console.log('bababbabab ====== ahhahahahah ======= 5')
         return (
             <View style={styles.container}>
                 <View style={{ alignItems: 'center'}}>
@@ -44,18 +43,10 @@ class InputWantToBuy extends Component {
                     <FormLabel>  Price: </FormLabel>
                     <TextInput
                         name="priceInput"
+                        value={this.state.formattedPrice}
                         placeholder="  Please Input The price of the Item"
                         style={{ width: 300, height: 40, borderColor: 'orange', borderWidth: 1 }}
-                        onChangeText={(e) => this.setState({textPrice:Number(e)})}
-                    />
-                </View>
-                <View style={{ alignItems: 'center' }}>
-                    <FormLabel>  Image URL: </FormLabel>
-                    <TextInput
-                        name="linkInput"
-                        placeholder="  Input picture url of your wished item"
-                        style={{ width: 300, height: 40, borderColor: 'orange', borderWidth: 1 }}
-                        onChangeText={(e) => this.setState({thumbnail:e})}
+                        onChangeText={this.onChangeMoneyFormat.bind(this)}
                     />
                 </View>
                 <View style={{ alignItems: 'center', paddingTop:20}}>
@@ -69,7 +60,7 @@ class InputWantToBuy extends Component {
                         style={{ paddingLeft:50,alignItems: 'center', width: 20}}
                         color="#fe7013"
                         title="Add WishList"
-                        onPress={() => { 
+                        onPress={() => {
                             this.submitInputWannaBuy();
                             this.props.toggleWantToBuy();
                         } }
@@ -79,12 +70,20 @@ class InputWantToBuy extends Component {
         )
     }
 
-    // onChange(e) {
-    //     console.log(e)
-    //     alert(JSON.stringify(e))
-    // }
+    onChangeMoneyFormat(e) {
+      const textPrice = e.replace(/,/g, '');
+      const formatMoney = new Promise((resolve) => {
+        e = e.replace(/,/g, '');
+        resolve(e.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+      });
+
+      formatMoney.then((value) => {
+        this.setState({formattedPrice: value, textPrice})
+      });
+    }
 
     submitInputWannaBuy () {
+      alert(this.state.textPrice);
         // alert(this.props.userId)
         let objInput = {
             item: this.state.textItem,
@@ -96,7 +95,7 @@ class InputWantToBuy extends Component {
         } else if (!objInput.item) {
             alert('Please input your Desired Item')
         }else{
-            this.props.submitWishlist(this.props.userId, this.state.textItem, parseInt(this.state.textPrice), this.state.thumbnail)
+            this.props.submitWishlist(this.props.userId, this.state.textItem, this.state.textPrice, this.state.thumbnail)
             // alert(this.props.userId)
         }
         //
@@ -119,12 +118,12 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    submitWishlist: (userId, name, price, thumbnail) => {
+    submitWishlist: (userId, name, price) => {
       const dataSent = {
         name: name,
         user_id: userId,
         price: price,
-        thumbnail: thumbnail,
+        thumbnail: 'https://shop.optiwella.com/sites/default/files/styles/product_thumb/public/images/products/no-image_40.png?itok=L3Obfisn',
       }
       dispatch(wishlistActions.addWishlist(dataSent))
     }
